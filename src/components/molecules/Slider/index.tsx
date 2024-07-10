@@ -46,9 +46,14 @@ export default function Slider() {
           slide n°3
         </div>
       </AutoPlaySwipeableViews>
-      <Stack position={"absolute"} bottom={'30px'} height={"10px"} width={"100%"} alignItems={'center'}>
+      <Stack
+        position={"absolute"}
+        bottom={'30px'}
+        height={"10px"}
+        width={"100%"}
+        alignItems={'center'}
+      >
         <Pagination
-          sx={{maxWidth: '100%', width: '100%'}}
           count={3}
           page={page}
           onChange={(event: any, value: number) => setPage(value)}
