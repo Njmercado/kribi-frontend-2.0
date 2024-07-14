@@ -7,16 +7,17 @@ interface WaveProps {
 const StyledSection = styled('section')`
   background-size: 100%;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: transparent;
+  margin: 0;
 
   @media (min-width: 0px) {
     background-image: url("/wave-xs.svg");
-    min-height: 20vh;
+    min-height: 47vh;
   }
 
   @media (min-width: 600px) {
     background-image: url("/wave-s.svg");
-    min-height: 39vh;
+    min-height: calc(30vh + 10vw);
   }
 
   @media (min-width: 900px) {
@@ -25,11 +26,11 @@ const StyledSection = styled('section')`
   } 
 
   @media (min-width: 1200px) {
-    min-height: 46.5vh;
+    min-height: cac(46.5vh;
   }
 
   @media (min-width: 1536px) {
-    min-height: 44.7vh;
+    min-height: calc(40vh + 10vw);
   }
 `
 
