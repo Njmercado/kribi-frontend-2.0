@@ -3,5 +3,5 @@ import Letter from './Letter'
 
 export {
   Wave,
-  Letter
+  Letter,
 }
