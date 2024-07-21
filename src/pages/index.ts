@@ -1,7 +1,9 @@
 import Home from "./Home";
-import Library from "./Library";
+import Dictionary from "./Dictionary"
+import Library from "./Library"
 
 export {
   Home,
-  Library,
+  Dictionary,
+  Library
 }

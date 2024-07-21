@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import { RootLayout } from "../layouts"
-import { Home, Library } from "../pages"
+import { Home, Dictionary, Library } from "../pages"
 
 export const ROUTER = createBrowserRouter([
   {
@@ -12,6 +12,10 @@ export const ROUTER = createBrowserRouter([
         element: <Home/>
       },
       ...["/diccionario", "/kajangari"].map((path: string) => ({
+        path,
+        element: <Dictionary/>
+      })),
+      ...["/libreria", "/yurumbi"].map((path: string) => ({
         path,
         element: <Library/>
       }))

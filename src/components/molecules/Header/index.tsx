@@ -19,7 +19,7 @@ export default function Header() {
         <Stack direction={"row"} gap={2} justifyContent={"flex-end"}>
           <Link to="/">Komensá</Link>
           <Link to="/kajangari">Kajangarí</Link>
-          <Link to="/">Yurumbí</Link>
+          <Link to="/yurumbi">Yurumbí</Link>
           <Link to="/">Arrelike</Link>
           <Link to="/">Chakero</Link>
           <Link to="/">Suto</Link>
