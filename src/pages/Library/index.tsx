@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, TextField } from "@mui/material";
+import { Box, Grid, Pagination, Stack, TextField } from "@mui/material";
 import { Letters, Result } from "../../components/molecules";
 import { useState } from "react";
 import { Letter } from "../../components/atoms";
@@ -7,6 +7,7 @@ import WORDS, { IWord } from "../../constants/words";
 export default function Library() {
 
 	const [letter, setLetter] = useState<string>()
+	const [page, setPage] = useState<number>(1)
 
 	function handleChosenLetter(value: string) {
 		setLetter(value)
@@ -20,8 +21,12 @@ export default function Library() {
 		))
 	}
 
+	function handleOnChangePagination(event: React.ChangeEvent<unknown>, value: number) {
+		setPage(value);
+	}
+
 	return (
-		<Stack>
+		<Stack sx={{position: 'relative', minHeight: '100vh'}}>
 			<Stack direction='column' alignItems='center' gap={2}>
 				<Box>logo</Box>
 				<Box>
@@ -42,6 +47,18 @@ export default function Library() {
 				<Grid container direction='row' columns={6} spacing={2} justifyContent='space-around'>
 					{ buildWords() }
 				</Grid>
+			</Stack>
+			<Stack
+				direction='row'
+				justifyContent='center'
+				sx={{position: 'absolute', bottom: 25, width: '100%'}}
+			>
+				<Pagination
+					count={10}
+					page={page}
+					onChange={handleOnChangePagination}
+					size='large'
+				/>
 			</Stack>
 		</Stack>
 	)
