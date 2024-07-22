@@ -1,11 +1,5 @@
 import { BookCategoryEnum } from "../enums/book_category.enum"
-
-export interface IBook {
-  name: string
-  image: string
-  url: string
-  type: BookCategoryEnum
-}
+import { IBook } from "../interfaces";
 
 export const BOOKS: Array<IBook> = [
   {
@@ -40,7 +34,7 @@ export const BOOKS: Array<IBook> = [
   },
   {
     name: 'San Basilio De Palenque, restacatando su lengua: La iniciativa comunitaria como modelo de gestión en el rescate de la lengua palenquera',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'https://studylib.es/doc/1919279/download-this-file--marianne-dieck-criollistica-palenquer',
     type: BookCategoryEnum.LENGUA
   },
@@ -82,7 +76,7 @@ export const BOOKS: Array<IBook> = [
   },
   {
     name: 'Palenquero Creole: the syntax of 2nd person pronouns and the pragmatics of address switching',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'https://www.academia.edu/34881344/Palenquero_Creole_the_syntax_of_2nd_person_pronouns_and_the_pragmatics_of_address_switching',
     type: BookCategoryEnum.LENGUA
   },
@@ -94,7 +88,7 @@ export const BOOKS: Array<IBook> = [
   },
   {
     name: 'Palenquero Creole Spanish',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'http://www.personal.psu.edu/jml34/Palenque-part.pdf',
     type: BookCategoryEnum.LENGUA
   },
@@ -122,12 +116,12 @@ export const BOOKS: Array<IBook> = [
     type: BookCategoryEnum.PALENQUE
   }, {
     name: 'Tambien existiamos en aquellos tiempos coloniales',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'https://www.academia.edu/42203874/Tambien_existiamos_en_aquellos_tiempos_coloniales',
     type: BookCategoryEnum.PALENQUE
   }, {
     name: 'AFRODESCENDIENTES EN COLOMBIA:COMPILACIÓN BIBLIOGRÁFICA',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'http://www.ram-wan.net/restrepo/documentos/afro-bibliografia-2008.pdf',
     type: BookCategoryEnum.PALENQUE
   },
@@ -139,7 +133,7 @@ export const BOOKS: Array<IBook> = [
   },
   {
     name: 'Biblioteca de literatura Afrocolombiana',
-    image: 'https://i.ibb.co/N7XNZx6/Captura-de-pantalla-de-2020-07-20-22-21-36.png',
+    image: '',
     url: 'http://babel.banrepcultural.org/cdm/search/collection/p17054coll7',
     type: BookCategoryEnum.LITERATURA
   },
