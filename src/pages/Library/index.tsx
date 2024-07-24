@@ -1,5 +1,5 @@
 import { BOOKS } from "../../constants";
-import { Book } from "../../components/molecules";
+import { Book, Searcher } from "../../components/molecules";
 import { IBook } from "../../interfaces";
 import { Grid } from "@mui/material";
 
@@ -21,6 +21,7 @@ export default function Library() {
 
   return (
     <main>
+      <Searcher></Searcher>
       <Grid container direction='row' columns={4} justifyContent='space-around' gap={2} p={5}>
         {buildBooks()}
       </Grid>

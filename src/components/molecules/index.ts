@@ -4,6 +4,7 @@ import Slider from './Slider';
 import Letters from './Letters'
 import Result from './Result';
 import Book from './Book'
+import Searcher from './Searcher';
 
 export {
   Header,
@@ -11,5 +12,6 @@ export {
   Slider,
   Letters,
   Result,
-  Book
+  Book,
+  Searcher
 }
