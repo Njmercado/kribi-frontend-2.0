@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Select, MenuItem, List, ListItem, ListItemText, Grid } from '@mui/material';
+import './index.css';
+import { useState } from 'react';
+import { Paper, IconButton, Grid, InputBase, Box } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import { BookCategoryEnum } from '../../../enums';
 import { MultiSelect } from '../../atoms';
 
@@ -38,22 +40,27 @@ const Searcher = () => {
   };
 
   return (
-    <section>
-      <Grid container direction='row' columns={4} spacing={2}>
-        <Grid item sm={1}>
-          <MultiSelect options={BookCategoryEnum} onChange={handleOnMultiSelectChange}/>
+    <Box className='searcher-container' style={{ height: '5vh' }}>
+      <Grid container direction='row' columns={12} alignItems='center' spacing={2}>
+        <Grid item sm={8}>
+          <Paper>
+            <IconButton>
+              <SearchIcon />
+            </IconButton>
+            <InputBase
+              placeholder='Nombre libro'
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+          </Paper>
         </Grid>
-        <Grid item sm={3}>
-          <TextField
-            label="Search documents"
-            value={searchQuery}
-            onChange={handleSearch}
-            variant="outlined"
-            fullWidth
-          />
+        <Grid item sm={4}>
+          <Paper>
+            <MultiSelect options={BookCategoryEnum} onChange={handleOnMultiSelectChange} />
+          </Paper>
         </Grid>
       </Grid>
-    </section>
+    </Box>
   );
 };
 

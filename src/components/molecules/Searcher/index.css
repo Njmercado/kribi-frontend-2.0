@@ -1,0 +1,9 @@
+.searcher-container {
+  width: 100%
+}
+
+@media (min-width: 800px) {
+  .searcher-container {
+    width: 50%
+  }
+}
