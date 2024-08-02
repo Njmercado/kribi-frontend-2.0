@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import { RootLayout } from "../layouts"
-import { Home, Dictionary, Library } from "../pages"
+import { Home, Dictionary, Library, Games } from "../pages"
 
 export const ROUTER = createBrowserRouter([
   {
@@ -18,7 +18,11 @@ export const ROUTER = createBrowserRouter([
       ...["/libreria", "/yurumbi"].map((path: string) => ({
         path,
         element: <Library/>
-      }))
+      })),
+      ...["/juegos", "/arrelike", "/actividades"].map((path: string) => ({
+        path,
+        element: <Games/>
+      })),
     ]
   }
 ])

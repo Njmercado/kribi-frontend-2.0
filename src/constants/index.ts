@@ -1,8 +1,9 @@
 import LETTERS from "./letters";
-import BOOKS, { IBook } from "./books.constant"
+import BOOKS from "./books.constant"
+import GAMES from "./games.constant"
 
 export {
     LETTERS,
-    BOOKS
+    BOOKS,
+    GAMES,
 };
-export type { IBook };

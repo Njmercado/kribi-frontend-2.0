@@ -20,7 +20,7 @@ export default function Header() {
           <Link to="/">Komensá</Link>
           <Link to="/kajangari">Kajangarí</Link>
           <Link to="/yurumbi">Yurumbí</Link>
-          <Link to="/">Arrelike</Link>
+          <Link to="/arrelike">Arrelike</Link>
           <Link to="/">Chakero</Link>
           <Link to="/">Suto</Link>
         </Stack>
