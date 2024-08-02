@@ -1,7 +1,7 @@
 import './index.css'
 import { Slider } from '../../components/molecules'
 import { Wave } from '../../components/atoms'
-import { Stack, Typography, Grid, Button } from '@mui/material'
+import { Stack, Typography, Grid } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export default function Home() {

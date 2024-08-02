@@ -5,7 +5,7 @@ type OptionType = { [key: string]: string }
 
 export interface MultiSelectProps {
   options: OptionType,
-  onChange: (option: string | string[]) => void
+  onChange: (option: Array<string>) => void
 }
 
 export default function MultiSelect({
@@ -17,8 +17,9 @@ export default function MultiSelect({
 
   function handleOnChange(event: SelectChangeEvent<typeof chosenCategories>) {
     const { value } = event.target
-    setChosenCategories(typeof value === 'string' ? value.split(',') : value)
-    onChange(event.target.value)
+    const splittedValue = typeof value === 'string' ? value.split(',') : value
+    setChosenCategories(splittedValue)
+    onChange(splittedValue)
   }
 
   function buildOptions() {

@@ -5,6 +5,7 @@ import Letters from './Letters'
 import Result from './Result';
 import Book from './Book'
 import Searcher from './Searcher';
+import Books from './Books'
 
 export {
   Header,
@@ -13,5 +14,6 @@ export {
   Letters,
   Result,
   Book,
-  Searcher
+  Searcher,
+  Books
 }

@@ -4,12 +4,19 @@ import { Paper, IconButton, Grid, InputBase, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { BookCategoryEnum } from '../../../enums';
 import { MultiSelect } from '../../atoms';
+import { IBook } from '../../../interfaces';
 
-const Searcher = () => {
+export interface SearcherProps {
+  data: Array<IBook>
+  onChange: (value: Array<IBook>) => void
+}
+
+const Searcher = ({
+  data,
+  onChange,
+}: SearcherProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [category, setCategory] = useState('all');
-  const [documents, setDocuments] = useState([]);
-  const [filteredDocuments, setFilteredDocuments] = useState([]);
+  const [category, setCategory] = useState<Array<string>>([]);
 
   const handleSearch = (e: any) => {
     const query = e.target.value;
@@ -17,26 +24,33 @@ const Searcher = () => {
     filterDocuments(query, category);
   };
 
-  const handleOnMultiSelectChange = (e: any) => {
-    const newCategory = e.target.value;
-    setCategory(newCategory);
-    filterDocuments(searchQuery, newCategory);
+  const handleOnMultiSelectChange = (categories: Array<string>) => {
+    setCategory(categories)
+    filterDocuments(searchQuery, categories);
   };
 
-  const filterDocuments = (query: any, category: any) => {
-    let filteredDocs = documents;
-    if (query) {
-      filteredDocs = filteredDocs.filter((doc: any) => {
-        const title = doc.title.toLowerCase();
-        const content = doc.content.toLowerCase();
-        const queryLower = query.toLowerCase();
-        return title.includes(queryLower) || content.includes(queryLower);
-      });
-    }
-    if (category !== 'all') {
-      filteredDocs = filteredDocs.filter((doc: any) => doc.category === category);
-    }
-    setFilteredDocuments(filteredDocs);
+  const filterByDocName = (query: string): Array<IBook> => {
+
+    if (query.length === 0) return data
+
+    return data.filter((doc: IBook) => {
+      const name = doc.name.toLowerCase();
+      const queryLower = query.toLowerCase();
+      return name.includes(queryLower);
+    });
+  }
+
+  const filterByCategory = (filteredByName: Array<IBook>, categoryList: Array<string>): Array<IBook> => {
+
+    if (categoryList.length === 0) return filteredByName
+
+    return filteredByName.filter((book: IBook) => categoryList.includes(book.type.toUpperCase()));
+  }
+
+  const filterDocuments = (query: string, categorySelect: Array<string>) => {
+    var filteredDocs: Array<IBook> = filterByDocName(query)
+    filteredDocs = filterByCategory(filteredDocs, categorySelect)
+    onChange(filteredDocs);
   };
 
   return (
