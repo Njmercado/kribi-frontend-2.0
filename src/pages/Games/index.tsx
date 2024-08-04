@@ -1,4 +1,4 @@
-import { Box, Grid, Card, CardContent, Skeleton, Typography, CardActions, Button, Dialog } from "@mui/material";
+import { Box, Grid, Card, CardContent, Skeleton, Typography, CardActions, Button, Dialog, DialogContent } from "@mui/material";
 import { GAMES } from "../../constants";
 import { IGame } from "../../interfaces";
 import { useEffect, useState } from "react";
@@ -34,8 +34,10 @@ export default function Games({ }: GamesProps) {
 
   return (
     <main>
-      <Dialog open={open} onClose={handleOnCloseDialog}>
-        { getDialogContent(game) }
+      <Dialog open={open} onClose={handleOnCloseDialog} fullWidth={true}>
+        <DialogContent sx={{ minHeight: '50vh' }}>
+          { getDialogContent(game) }
+        </DialogContent>
       </Dialog>
       <Box sx={{ p: 5 }}>
         <Grid container direction='row' columns={3} justifyContent='space-around' spacing={5}>
