@@ -1,0 +1,6 @@
+.close-icon {
+  background-color: red;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer; 
+}

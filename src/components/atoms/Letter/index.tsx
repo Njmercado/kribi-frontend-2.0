@@ -6,7 +6,9 @@ interface ILetter {
   value: string
   onClick?: (value: string) => void
   size?: 'small' | 'mediun' | 'large'
-  disabled?: boolean
+  disabled?: boolean,
+  className?: string,
+  style?: React.CSSProperties
 }
 
 export interface LetterProps extends ILetter {}
@@ -15,7 +17,9 @@ export default function Letter({
   value,
   onClick,
   size,
-  disabled
+  disabled,
+  className,
+  style
 }: LetterProps) {
 
   function handleOnClick() {
@@ -38,7 +42,7 @@ export default function Letter({
   }
 
   return (
-		<StyledCard disabled={disabled} size={size} onClick={handleOnClick}>
+		<StyledCard disabled={disabled} size={size} onClick={handleOnClick} className={className} style={style}>
       <Typography variant={getTypographyVariant()}>
         {value}
       </Typography>
