@@ -1,4 +1,4 @@
-import { Slider } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export interface TimerProps {
@@ -33,6 +33,6 @@ export default function Timer({
   }, [activate])
 
   return (
-    <Slider disabled defaultValue={100} value={timer} step={1}/>
+    <LinearProgress value={timer} variant='determinate'/>
   )
 }

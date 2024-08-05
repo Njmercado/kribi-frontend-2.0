@@ -1,3 +1,5 @@
+'use client';
+
 import './index.css'
 import { Slider } from '../../components/molecules'
 import { Wave } from '../../components/atoms'
@@ -31,7 +33,7 @@ export default function Home() {
                 Kribí como herramienta digital es una solución interactiva y divertida; permite llegar a diferentes lugares que cuenten con acceso a internet, evitando que los usuarios tengan que trasladarse. También reduce valores negativos ambientales que se dan para acceder a escenarios de aprendizaje tradicional.
               </Typography>
             </Stack>
-            <Stack direction='column' backgroundColor='red' mt={10}>
+            <Stack direction='column' mt={10} sx={{ backgroundColor: 'red' }}>
               <Typography variant='h3' fontWeight='bold'>
                 ¡CONOCE, APRENDE Y DIVIÉRTETE!
               </Typography>

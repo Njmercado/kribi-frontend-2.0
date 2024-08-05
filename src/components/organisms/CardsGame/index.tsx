@@ -67,11 +67,11 @@ export default function CardsGame({
   function buildCircle() {
     const uniqueLetters = getArrayOfUniqueLetters()
     const NUMBER_OF_LETTERS = uniqueLetters.length
-    const angle = 360 / NUMBER_OF_LETTERS
+    const SEPARATION = 360 / NUMBER_OF_LETTERS
 
     return uniqueLetters.map((item: string, index: number) => {
 
-      const { x: top, y: right } = getCoordinates(index, angle, NUMBER_OF_LETTERS)
+      const { x: top, y: right } = getCoordinates(index, SEPARATION, NUMBER_OF_LETTERS)
 
       return (
         <Box key={index} sx={{ position: 'absolute', top, right }}>
