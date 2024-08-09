@@ -21,7 +21,7 @@ export default function Header() {
           <Link to="/kajangari">Kajangarí</Link>
           <Link to="/yurumbi">Yurumbí</Link>
           <Link to="/arrelike">Arrelike</Link>
-          <Link to="/">Chakero</Link>
+          <Link to="/chakero">Chakero</Link>
           <Link to="/">Suto</Link>
         </Stack>
       </Stack>
