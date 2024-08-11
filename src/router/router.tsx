@@ -1,6 +1,7 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, Outlet } from "react-router-dom"
 import { RootLayout } from "../layouts"
 import { Home, Dictionary, Library, Games, News } from "../pages"
+import { NewsInformation } from "../components/molecules"
 
 export const ROUTER = createBrowserRouter([
   {
@@ -23,9 +24,23 @@ export const ROUTER = createBrowserRouter([
         path,
         element: <Games/>
       })),
-      ...["/noticias", "/Chakero", "/noticia"].map((path: string) => ({
+      ...["/noticias", "/chakero", "/noticia"].map((path: string) => ({
         path,
-        element: <News/>
+        element: <Outlet/>,
+        children: [
+          {
+            path: `${path}/`,
+            element: <News/>
+          },
+          {
+            path: `${path}/:label`,
+            element: <NewsInformation/>
+          },
+          {
+            path: `${path}/id/:id`,
+            element: <NewsInformation/>
+          }
+        ]
       })),
     ]
   }

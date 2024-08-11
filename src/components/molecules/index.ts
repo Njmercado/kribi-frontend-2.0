@@ -6,6 +6,7 @@ import Result from './Result';
 import Book from './Book'
 import Searcher from './Searcher';
 import Books from './Books'
+import NewsInformation from './NewsInformation';
 
 export {
   Header,
@@ -15,5 +16,6 @@ export {
   Result,
   Book,
   Searcher,
-  Books
+  Books,
+  NewsInformation,
 }
