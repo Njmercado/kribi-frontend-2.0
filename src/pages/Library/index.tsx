@@ -32,6 +32,7 @@ export default function Library() {
           sx={{ mt: 5 }}
           count={Math.ceil(books.length/BOOKS_LIMIT)}
           page={page}
+          // @ts-expect-error Event is not used but is necessary due i cant use destructure in the onChange function
           onChange={(event: React.ChangeEvent<unknown>, value: number) => setPage(value)}
           size='large'
         />
