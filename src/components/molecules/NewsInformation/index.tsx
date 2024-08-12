@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { AVAILABLE_NEWS } from "../../../constants"
 import Markdown from "react-markdown"
-import { News } from "../../../interfaces"
+import { INews } from "../../../interfaces"
 
 export interface NewsInformationProps {}
 
@@ -15,7 +15,7 @@ export default function NewsInformation({}: NewsInformationProps) {
   const idParam: number = params.id as unknown as number
 
   function search(prop: 'id' | 'label', valueToSearch: string | number) {
-    return AVAILABLE_NEWS.find((item: News) => item[prop] == valueToSearch) || { data: 'Not found' }
+    return AVAILABLE_NEWS.find((item: INews) => item[prop] == valueToSearch) || { data: 'Not found' }
   }
   function searchById() { return search('id', idParam)}
   function searchByLabel() { return search('label', labelParam)}
