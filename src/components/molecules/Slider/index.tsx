@@ -7,24 +7,13 @@ import { autoPlay } from 'react-swipeable-views-utils'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const styles = {
-  slide: {
-    padding: 15,
-    minHeight: 100,
-    color: '#fff',
-  },
-  slide1: {
-    background: '#FEA900',
-  },
-  slide2: {
-    background: '#B3DC4A',
-  },
-  slide3: {
-    background: '#6AC0FF',
-  },
-};
+export interface SliderProps {
+  items: any[]
+}
 
-export default function Slider() {
+export default function Slider({
+  items
+}: SliderProps) {
 
   const [page, setPage] = useState<number>(1)
 
@@ -36,15 +25,9 @@ export default function Slider() {
         onIndexChange={(index: number) => setPage(index)}
         enableMouseEvents
       >
-        <div style={Object.assign({}, styles.slide, styles.slide1)}>
-          slide n°1
-        </div>
-        <div style={Object.assign({}, styles.slide, styles.slide2)}>
-          slide n°2
-        </div>
-        <div style={Object.assign({}, styles.slide, styles.slide3)}>
-          slide n°3
-        </div>
+        {
+          items.map((item: any, index: number) => <div key={index}>{item}</div>)
+        }
       </AutoPlaySwipeableViews>
       <Stack
         position={"absolute"}
@@ -54,7 +37,7 @@ export default function Slider() {
         alignItems={'center'}
       >
         <Pagination
-          count={3}
+          count={items.length}
           page={page}
           onChange={(event: any, value: number) => setPage(value)}
         />
