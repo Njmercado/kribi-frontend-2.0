@@ -1,33 +1,37 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { AVAILABLE_NEWS } from "../../../constants"
+import Markdown from "react-markdown"
+import { News } from "../../../interfaces"
 
 export interface NewsInformationProps {}
 
 export default function NewsInformation({}: NewsInformationProps) {
 
+  const [ news, setNews ] = useState<{data: string}>()
+
   const params = useParams()
   const labelParam: string = params.label as unknown as string
   const idParam: number = params.id as unknown as number
 
-  function search(prop: string, valueToSearch: string | number) {
-    return AVAILABLE_NEWS.find(item => item[prop] == valueToSearch)
+  function search(prop: 'id' | 'label', valueToSearch: string | number) {
+    return AVAILABLE_NEWS.find((item: News) => item[prop] == valueToSearch) || { data: 'Not found' }
   }
   function searchById() { return search('id', idParam)}
   function searchByLabel() { return search('label', labelParam)}
 
   useEffect(() => {
-    let result;
+    let result: { data: string } = { data: 'Not found' };
     if(idParam) result = searchById()
     else if(labelParam) result = searchByLabel()
-    console.log(result)
+    setNews(result)
   }, [])
 
   return (
     <main>
       <article>
         <section>
-          <p>news information for {idParam ?? labelParam}</p>
+          <Markdown>{news?.data}</Markdown>
         </section>
       </article>
     </main>
