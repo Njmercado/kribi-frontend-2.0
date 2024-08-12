@@ -22,7 +22,7 @@ export default function Header() {
           <Link to="/yurumbi">Yurumbí</Link>
           <Link to="/arrelike">Arrelike</Link>
           <Link to="/chakero">Chakero</Link>
-          <Link to="/">Suto</Link>
+          <Link to="/suto">Suto</Link>
         </Stack>
       </Stack>
     </StyledNav>

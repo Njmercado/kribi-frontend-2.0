@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet } from "react-router-dom"
 import { RootLayout } from "../layouts"
-import { Home, Dictionary, Library, Games, News } from "../pages"
+import { Home, Dictionary, Library, Games, News, AboutUs } from "../pages"
 import { NewsInformation } from "../components/molecules"
 
 export const ROUTER = createBrowserRouter([
@@ -42,6 +42,10 @@ export const ROUTER = createBrowserRouter([
           }
         ]
       })),
+      ...["/nosotros", "/suto"].map((path: string) => ({
+        path,
+        element: <AboutUs/>
+      }))
     ]
   }
 ])

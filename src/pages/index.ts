@@ -3,6 +3,7 @@ import Dictionary from "./Dictionary"
 import Library from "./Library"
 import Games from "./Games"
 import News from "./News"
+import AboutUs from "./AboutUs"
 
 export {
   Home,
@@ -10,4 +11,5 @@ export {
   Library,
   Games,
   News,
+  AboutUs,
 }
