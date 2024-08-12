@@ -39,7 +39,7 @@ export default function MultiSelect({
       onChange={handleOnChange}
       multiple={true}
       value={chosenCategories}
-      renderValue={(selected: any) => {
+      renderValue={(selected: string[]) => {
 
         if (selected.length === 0) {
           return <span>Categorias</span>;

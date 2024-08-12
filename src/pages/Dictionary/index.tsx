@@ -21,6 +21,7 @@ export default function Dictionary() {
 		))
 	}
 
+	// @ts-expect-error Event is not used but is necessary due i cant use destructure in the onChange function
 	function handleOnChangePagination(event: React.ChangeEvent<unknown>, value: number) {
 		setPage(value);
 	}

@@ -8,7 +8,7 @@ export interface GamesProps {
 
 }
 
-export default function Games({ }: GamesProps) {
+export default function Games() {
 
   const RESET_CHOSEN_GAME = ''
   const [game, setGame] = useState<string>('')

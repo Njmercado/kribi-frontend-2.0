@@ -13,7 +13,7 @@ export default function Library() {
 
   function sliceBooks() {
     const lowerLimit = (page-1)*BOOKS_LIMIT
-    var upperLimit = lowerLimit + BOOKS_LIMIT
+    let upperLimit = lowerLimit + BOOKS_LIMIT
 
     if(upperLimit > books.length) upperLimit = books.length
 

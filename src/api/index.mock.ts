@@ -3,6 +3,7 @@ function getRandomWords(cuantity: number) {
     'work',
     'word2',
     'word',
+    `${cuantity}`
   ]
 }
 

@@ -18,7 +18,7 @@ const Searcher = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState<Array<string>>([]);
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
     filterDocuments(query, category);
@@ -48,7 +48,7 @@ const Searcher = ({
   }
 
   const filterDocuments = (query: string, categorySelect: Array<string>) => {
-    var filteredDocs: Array<IBook> = filterByDocName(query)
+    let filteredDocs: Array<IBook> = filterByDocName(query)
     filteredDocs = filterByCategory(filteredDocs, categorySelect)
     onChange(filteredDocs);
   };

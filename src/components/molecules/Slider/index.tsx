@@ -1,14 +1,16 @@
 'use client'
 
 import { Pagination, Stack } from '@mui/material';
-import { useState } from 'react';
+import { ChangeEvent, ReactNode, useState } from 'react';
+// @ts-expect-error This package is installed but dont know why is lunching an error
 import SwipeableViews from 'react-swipeable-views'
+// @ts-expect-error This package is installed but dont know why is lunching an error
 import { autoPlay } from 'react-swipeable-views-utils'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export interface SliderProps {
-  items: any[]
+  items: ReactNode[]
 }
 
 export default function Slider({
@@ -26,7 +28,7 @@ export default function Slider({
         enableMouseEvents
       >
         {
-          items.map((item: any, index: number) => <div key={index}>{item}</div>)
+          items.map((item: ReactNode, index: number) => <div key={index}>{item}</div>)
         }
       </AutoPlaySwipeableViews>
       <Stack
@@ -39,7 +41,8 @@ export default function Slider({
         <Pagination
           count={items.length}
           page={page}
-          onChange={(event: any, value: number) => setPage(value)}
+          // @ts-expect-error Event is not used but is necessary due i cant use destructure in the onChange function
+          onChange={(event: ChangeEvent, value: number) => setPage(value)}
         />
       </Stack>
     </Stack>

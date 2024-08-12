@@ -6,7 +6,7 @@ import { INews } from "../../../interfaces"
 
 export interface NewsInformationProps {}
 
-export default function NewsInformation({}: NewsInformationProps) {
+export default function NewsInformation() {
 
   const [ news, setNews ] = useState<{data: string}>()
 

@@ -1,7 +1,8 @@
 import { styled } from "@mui/material"
+import { ReactNode } from "react"
 
 interface WaveProps {
-  children?: any
+  children?: ReactNode
 }
 
 const StyledSection = styled('section')`

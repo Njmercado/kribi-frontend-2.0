@@ -6,9 +6,7 @@ import { getRandomWords } from "../../../api/index.mock";
 
 export interface CardsGameProps { }
 
-export default function CardsGame({
-
-}: CardsGameProps) {
+export default function CardsGame() {
 
   const RADIO = 100
   const [activate, setActivate] = useState<boolean>(false)

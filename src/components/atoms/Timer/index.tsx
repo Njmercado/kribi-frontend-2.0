@@ -11,7 +11,7 @@ export default function Timer({
   onFinish
 }: TimerProps) {
 
-  let interval: any;
+  let interval: number;
   const [timer, setTimer] = useState<number>(100)
 
   function activateTimer() {
