@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const KEY = 'SERVER_TOKEN'
-const SERVER_NAME = 'http://localhost:8000'
+const KEY = import.meta.env.VITE_SERVER_TOKEN
+const SERVER_NAME = import.meta.env.VITE_SERVER_URL
 const oneWeek = 60 * 60 * 24 * 7
 
 const HEADERS = {

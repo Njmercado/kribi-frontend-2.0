@@ -42,7 +42,7 @@ export default function Dictionary() {
 				<Box>
 					<TextField
 						placeholder='Busca una palabra'
-						onChange={(event: React.ChangeEvent<unknown>) => setWord(event.target.value)}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value)}
 					></TextField>
 				</Box>
 			</Stack>
