@@ -1,13 +1,22 @@
 import { Box, Grid, Pagination, Stack, TextField } from "@mui/material";
 import { Letters, Result } from "../../components/molecules";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Letter } from "../../components/atoms";
 import WORDS, { IWord } from "../../constants/words";
+import { searchWord } from "../../api";
 
 export default function Dictionary() {
 
 	const [letter, setLetter] = useState<string>()
+	const [word, setWord] = useState<string>('')
 	const [page, setPage] = useState<number>(1)
+
+	useEffect(() => {
+		(async () => {
+			const result = await searchWord(word);
+			console.log('result: ', result)
+		})()
+	}, [word])
 
 	function handleChosenLetter(value: string) {
 		setLetter(value)
@@ -33,6 +42,7 @@ export default function Dictionary() {
 				<Box>
 					<TextField
 						placeholder='Busca una palabra'
+						onChange={(event: React.ChangeEvent<unknown>) => setWord(event.target.value)}
 					></TextField>
 				</Box>
 			</Stack>
