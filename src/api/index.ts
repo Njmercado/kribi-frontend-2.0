@@ -21,11 +21,29 @@ function getRandomWords(cuantity: number) {
 }
 
 async function searchWord(words: string) {
-  return await axios.get(`${SERVER_NAME}/words/byWord/${words}/true`, { headers: HEADERS })
+
+  if(words.length < 3) return []
+
+  const result = await axios.get(`${SERVER_NAME}/words/byWord/${words}/true`, { headers: HEADERS })
+
+  if(result.data.error === false) {
+    return result.data.response
+  }
+
+  return []
 }
 
-async function searchLetter(letter: string) {
-  return await axios.get(`${SERVER_NAME}/words/list/${letter}/10`, { headers: HEADERS })
+async function searchLetter(letter: string, page: number = 0) {
+
+  if(letter.length === 0) return []
+
+  const result = await axios.get(`${SERVER_NAME}/words/list/${letter}/10/${page}`, { headers: HEADERS })
+
+  if(result.data.error === false) {
+    return result.data.response
+  }
+
+  return []
 }
 
 export {
