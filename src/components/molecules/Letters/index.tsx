@@ -17,7 +17,7 @@ export default function Letters({
 	}
 
 	return (
-		<Grid container direction='row' xs={6} sm={10} md={14} lg={18} xl={21} justifyContent='space-around'>
+		<Grid container direction='row' flexWrap={'wrap'} columns={24} justifyContent='center' spacing={1}>
 			{
 				LETTERS.map((letter: string, index: number) => (
 					<Grid item  key={index}>
