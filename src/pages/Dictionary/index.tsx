@@ -1,9 +1,10 @@
-import { Box, Grid, Stack, TextField } from "@mui/material";
-import { Letters, Result } from "../../components/molecules";
+import { Box, Stack, TextField } from "@mui/material";
+import { Letters } from "../../components/molecules";
 import { useEffect, useState } from "react";
 import { Letter } from "../../components/atoms";
 import { IWord } from "../../interfaces/word.interface";
 import { searchLetter, searchWord } from "../../api";
+import { ListWords } from "../../components/organisms";
 
 export default function Dictionary() {
 
@@ -12,10 +13,10 @@ export default function Dictionary() {
 	const [page, setPage] = useState<number>()
 	const [wordsResult, setWordsResult] = useState<IWord[]>([])
 	const [loading, setLoading] = useState<boolean>(false)
-	const [keepSearching, setKeepSearching] = useState<boolean>(true);
+	const [keepScrolling, setKeepScrolling] = useState<boolean>(true);
 
 	function reset() {
-		setKeepSearching(true)
+		setKeepScrolling(true)
 		setWordsResult([])
 		setPage(0)
 	}
@@ -24,43 +25,50 @@ export default function Dictionary() {
 		setLetter(value)
 	}
 
-	function buildWords() {
-		return wordsResult.map((word: IWord) => (
-			<Grid item sm={1}>
-				<Result value={word.palabra} translations={word.definicion} from='pal' ></Result>
-			</Grid>
-		))
+	async function getSearchLetterResult(letterToSearch: string, pageToSearch: number): Promise<IWord[]> {
+		setLoading(true)
+		const result = await searchLetter(letterToSearch, pageToSearch);
+		setTimeout(() => setLoading(false), 1000)
+		return result
 	}
 
-	async function handleSearchLetter() {
-		setLoading(true)
-		const result = await searchLetter(letter, page);
-		const isEmpty = () => result.length === 0;
-
-		if (isEmpty()) setKeepSearching(false);
-		else setWordsResult([...wordsResult, ...result]);
-		setTimeout(() => setLoading(false), 1000)
+	async function handleWordsResult(words: Promise<IWord[]>) {
+		const isEmpty = (await words).length === 0;
+		if (isEmpty) setKeepScrolling(false);
+		else {
+			words.then(newWords => setWordsResult(oldWords => [...oldWords, ...newWords]));
+		}
 	}
 
 	useEffect(() => {
-		(async () => {
+
+		const wordHasMoreThanThreeLetters = () => word.length > 3;
+
+		if (wordHasMoreThanThreeLetters()) {
+			reset()
 			setLetter('')
-			const result = await searchWord(word);
-			setWordsResult(result);
-		})()
+			handleWordsResult(searchWord(word));
+		}
 	}, [word])
 
-	useEffect(() => { 
-		reset()
-		handleSearchLetter()
+	useEffect(() => {
+
+		const letterIsNotEmpty = () => letter.length > 0;
+
+		if (letterIsNotEmpty()) {
+			reset()
+			handleWordsResult(getSearchLetterResult(letter, 0))
+		}
 	}, [letter])
 
+	// When user scrolls to the bottom of the page, the next page is loaded
 	useEffect(() => {
-		if (page !== undefined) (async () => handleSearchLetter())()
+		if (page !== undefined && page > 0) handleWordsResult(getSearchLetterResult(letter, page))
 	}, [page])
 
+	// infinite scroll
 	window.onscroll = function () {
-		if (!keepSearching) return;
+		if (!keepScrolling) return;
 
 		if (window.innerHeight + window.scrollY === document.body.scrollHeight) {
 			if (loading || letter.length === 0) return;
@@ -92,15 +100,9 @@ export default function Dictionary() {
 					letter && <Letter disabled size="large" value={letter} />
 				}
 			</Stack>
-			<Stack direction='column' mt={4} p={8} justifyContent={'center'} alignItems={'center'}>
-				<Grid container direction='row' columns={4} spacing={2} justifyContent='space-around'>
-					{buildWords()}
-				</Grid>
-				{
-					loading &&
-					<h4>loading...</h4>
-				}
-			</Stack>
+			<Box>
+				<ListWords loading={loading} words={wordsResult} />
+			</Box>
 		</Stack>
 	)
 }
