@@ -1,7 +1,5 @@
-export interface IWord {
-  palabra: string
-  definicion: Array<string>
+import { WordDTO } from "./word.dto.interface"
+
+export interface IWord extends WordDTO {
   language?: 'es' | 'pal'
-  popularidad: number
-  ejemplos: Array<string>
 }
