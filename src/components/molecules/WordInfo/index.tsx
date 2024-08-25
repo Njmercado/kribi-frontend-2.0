@@ -1,18 +1,18 @@
 import { Card, CardContent, Stack, Divider, Typography, Chip, CardActions, Button } from '@mui/material';
 
-interface IResult {
+interface IWordInfo {
   value: string
   translations: Array<string>
   from: 'es' | 'pal'
 }
 
-export interface ResultProps extends IResult { }
+export interface WordInfoProps extends IWordInfo { }
 
-export default function Result({
+export default function WordInfo({
   value,
   translations,
   from
-}: ResultProps) {
+}: WordInfoProps) {
   return (
     <Card>
       <CardContent>
