@@ -1,14 +1,11 @@
 import axios from 'axios'
+import { WordDTO } from '../interfaces';
 
-const KEY = import.meta.env.VITE_SERVER_TOKEN
+const TOKEN = import.meta.env.VITE_SERVER_TOKEN
 const SERVER_NAME = import.meta.env.VITE_SERVER_URL
-const oneWeek = 60 * 60 * 24 * 7
 
-const HEADERS = {
-  'x-authorization-server': `Basic ${KEY}`,
-  'Cache-Control': `max-age=${oneWeek}`,
-  'Content-Type': 'text/plain'
-}
+const HEADERS = new Headers();
+HEADERS.append("x-api-key", TOKEN);
 
 function getRandomWords(cuantity: number) {
   return axios.get('/random',
@@ -20,27 +17,30 @@ function getRandomWords(cuantity: number) {
   )
 }
 
-async function searchWord(words: string) {
+async function searchWord(words: string): Promise<Array<WordDTO>> {
 
-  if(words.length < 3) return []
+  if (words.length < 3) return []
 
-  const result = await axios.get(`${SERVER_NAME}/words/byWord/${words}/true`, { headers: HEADERS })
-
-  if(result.data.error === false) {
-    return result.data.response
-  }
+  // const result = await fetch(`${SERVER_NAME}/words/byWord/${words}/true`, { headers: HEADERS, method: 'GET', redirect: 'follow' })
 
   return []
 }
 
-async function searchLetter(letter: string, page: number = 0) {
+async function searchLetter(letter: string, page: number = 0): Promise<Array<WordDTO>> {
 
-  if(letter.length === 0) return []
+  if (letter.length === 0) return []
 
-  const result = await axios.get(`${SERVER_NAME}/words/list/${letter}/10/${page}`, { headers: HEADERS })
+  try {
+    const request = await fetch(
+      `${SERVER_NAME}/getListOfWordsByLetter?letter=${letter}&page=${page}`,
+      { headers: HEADERS, method: 'GET' }
+    )
 
-  if(result.data.error === false) {
-    return result.data.response
+    const data = await request.json()
+
+    if (request.status === 200) return data
+  } catch (error) {
+    console.error("ERROR: ", error)
   }
 
   return []
