@@ -21,4 +21,8 @@ export const StyledCard = styled(Card)(({size, disabled}: {size?: 'small' | 'med
   alignItems: 'center',
   width: getSize(size),
   height: getSize(size),
+  transition: 'transform 0.2s',
+  ":hover": {
+    transform: 'scale(1.2)'
+  }
 }))
