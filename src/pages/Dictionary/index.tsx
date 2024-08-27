@@ -1,4 +1,5 @@
-import { Box, Stack, TextField } from "@mui/material";
+import { Box, IconButton, Stack, TextField } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import { Letters } from "../../components/molecules";
 import { useEffect, useState } from "react";
 import { Letter } from "../../components/atoms";
@@ -25,11 +26,19 @@ export default function Dictionary() {
 		setLetter(value)
 	}
 
-	async function getSearchLetterResult(letterToSearch: string, pageToSearch: number): Promise<IWord[]> {
+	async function search(searchFunction: () => Promise<IWord[]>): Promise<IWord[]> {
 		setLoading(true)
-		const result = await searchLetter(letterToSearch, pageToSearch);
+		const result = await searchFunction()
 		setTimeout(() => setLoading(false), 1000)
 		return result
+	}
+
+	async function getSearchWordsResult(words: string): Promise<IWord[]> {
+		return search(() => searchWord(words));
+	}
+
+	async function getSearchLetterResult(letterToSearch: string, pageToSearch: number): Promise<IWord[]> {
+		return search(() => searchLetter(letterToSearch, pageToSearch));
 	}
 
 	async function handleWordsResult(words: Promise<IWord[]>) {
@@ -40,16 +49,17 @@ export default function Dictionary() {
 		}
 	}
 
-	useEffect(() => {
-
+	function handleSearchWords() {
 		const wordHasMoreThanThreeLetters = () => word.length > 3;
 
 		if (wordHasMoreThanThreeLetters()) {
 			reset()
 			setLetter('')
-			handleWordsResult(searchWord(word));
+			handleWordsResult(getSearchWordsResult(word));
 		}
-	}, [word])
+	}
+
+	useEffect(() => { if (word.length === 0) reset() }, [word])
 
 	useEffect(() => {
 
@@ -89,7 +99,10 @@ export default function Dictionary() {
 					<TextField
 						placeholder='Busca una palabra'
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value)}
-					></TextField>
+					/>
+					<IconButton onClick={handleSearchWords}>
+						<SearchIcon />
+					</IconButton>
 				</Box>
 			</Stack>
 			<Stack mt={5}>
