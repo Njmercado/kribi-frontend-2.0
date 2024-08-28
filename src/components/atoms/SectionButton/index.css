@@ -1,0 +1,10 @@
+.paper {
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.paper:hover {
+  transform: scale(1.2);
+  box-shadow: black 0px 10px 10px -10px;
+}

@@ -1,28 +1,54 @@
-import { Stack, styled } from "@mui/material";
+import './index.css'
+
+import { IconButton, Stack, styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import LINKS from "../../../constants/links.constant";
+import { useState } from 'react';
+import { Facebook, Instagram } from '@mui/icons-material';
 
 const StyledNav = styled('nav')`
-  padding: 5px 10px;
+  padding: 20px 10px;
+  background-color: var(--dark-brown);
 `
 
 export default function Header() {
+
+  const [clickedLink, setClickedLink] = useState<string>('')
+
+  function renderLinks() {
+    return LINKS.map((link, index) => {
+      return (
+        <Link key={index} to={link.link ?? '/'} onClick={() => setClickedLink(link.name)}>
+          <Typography
+            variant='subtitle1'
+            fontWeight='600'
+            className={
+              'link-header-button ' +
+              (clickedLink === link.name ? 'active' : '')
+            }
+          >
+              {link.name}
+            </Typography>
+        </Link>
+      )
+    })
+  }
+
   return (
     <StyledNav>
-      <Stack direction={"column"}>
-        <Stack direction={"row"} justifyContent={"space-between"}>
-          <Stack>LOGO</Stack>
-          <Stack direction={"row"}>
-            <Stack>Siguenos - Facebook - Instagram</Stack>
-            <Stack>Mi Cuenta</Stack>
+      <Stack direction="row" justifyContent='space-between'>
+        <img src="/images/logo.png" alt="" width='15%'/>
+        <Stack alignItems='flex-end' gap={2}>
+          <Stack direction={"row"} justifyContent={"space-between"}>
+            <Stack direction={"row"} alignItems='center' spacing={2} color='var(--white)'>
+              <Typography variant='h6'>Siguenos</Typography>
+              <IconButton color='inherit'> <Facebook/> </IconButton>
+              <IconButton color='inherit'> <Instagram/> </IconButton>
+            </Stack>
           </Stack>
-        </Stack>
-        <Stack direction={"row"} gap={2} justifyContent={"flex-end"}>
-          <Link to="/">Komensá</Link>
-          <Link to="/kajangari">Kajangarí</Link>
-          <Link to="/yurumbi">Yurumbí</Link>
-          <Link to="/arrelike">Arrelike</Link>
-          <Link to="/chakero">Chakero</Link>
-          <Link to="/suto">Suto</Link>
+          <Stack direction={"row"} gap={2} justifyContent={"flex-end"}>
+            {renderLinks()}
+          </Stack>
         </Stack>
       </Stack>
     </StyledNav>

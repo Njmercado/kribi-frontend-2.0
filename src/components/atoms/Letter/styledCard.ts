@@ -21,4 +21,18 @@ export const StyledCard = styled(Card)(({size, disabled}: {size?: 'small' | 'med
   alignItems: 'center',
   width: getSize(size),
   height: getSize(size),
+  transition: 'transform 0.2s',
+  backgroundColor: 'var(--yellow)',
+  color: 'var(--brown)',
+  ":hover": {
+    backgroundColor: 'var(--light-brown)',
+    color: 'var(--white)',
+    transform: 'scale(1.2)'
+  },
+  "&.active": {
+    backgroundColor: 'var(--light-brown)',
+    color: 'var(--white)',
+    transform: 'scale(1.5)',
+    margin: '0 10px'
+  }
 }))

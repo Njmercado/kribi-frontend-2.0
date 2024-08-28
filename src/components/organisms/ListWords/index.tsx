@@ -5,17 +5,19 @@ import { WordInfo } from "../../molecules"
 interface ListWordsProps {
   words: IWord[]
   loading: boolean
+  searchedWord?: string
 }
 
 export default function ListWords({
   words,
   loading,
+  searchedWord
 }: ListWordsProps) {
   
 	function buildWords() {
 		return words.map((word: IWord) => (
 			<Grid item sm={1}>
-				<WordInfo value={word.palabra} translations={word.definicion} from='pal'/>
+				<WordInfo searchedWord={searchedWord} value={word.palabra} translations={word.definicion} from='pal'/>
 			</Grid>
 		))
 	}

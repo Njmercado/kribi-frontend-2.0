@@ -1,0 +1,16 @@
+.link-header-button {
+  color: var(--white);
+  border-radius: 10px;
+  padding: 6px;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+.active {
+  background-color: var(--white);
+  color: var(--brown)
+}
+
+.link-header-button:hover {
+  background-color: var(--yellow);
+  color: var(--brown)
+}
