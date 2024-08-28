@@ -77,7 +77,7 @@ export default function Home() {
           </Stack>
           <Stack bgcolor='var(--brown)' pb={10} pt={20}>
             <Grid container direction='row' flexWrap='wrap' justifyContent='space-around' columnSpacing={2}>
-              { SECTIONS.map((section: ISection, index: number) => <SectionButton {...section} key={index} />) }
+              {SECTIONS.map((section: ISection, index: number) => <SectionButton {...section} key={index} />)}
             </Grid>
           </Stack>
         </section>

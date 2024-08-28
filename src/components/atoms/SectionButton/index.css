@@ -1,7 +1,7 @@
 .paper {
   border-radius: 10px;
   cursor: pointer;
-  transition: all 200ms;
+  transition: all 200ms ease-in-out;
 }
 
 .paper:hover {

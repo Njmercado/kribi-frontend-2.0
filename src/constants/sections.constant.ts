@@ -11,7 +11,7 @@ export const SECTIONS: Array<ISection> = [
     link: '/noticias',
     color: 'var(--red)',
     title: 'Noticias',
-    image: '/images/icono-diccionario.png'
+    image: '/images/icono-noticias.png'
   },
   {
     link: '/actividades',
