@@ -1,8 +1,9 @@
-import { Box, IconButton, Stack, TextField } from "@mui/material";
+import './index.css'
+
+import { Box, Grid, IconButton, InputBase, Paper, Stack } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { Letters } from "../../components/molecules";
 import { useEffect, useState } from "react";
-import { Letter } from "../../components/atoms";
 import { IWord } from "../../interfaces/word.interface";
 import { searchLetter, searchWord } from "../../api";
 import { ListWords } from "../../components/organisms";
@@ -92,30 +93,33 @@ export default function Dictionary() {
 	}
 
 	return (
-		<Stack sx={{ position: 'relative', minHeight: '100vh' }}>
+		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
 			<Stack direction='column' alignItems='center' gap={2}>
-				<Box>logo</Box>
-				<Box>
-					<TextField
-						placeholder='Busca una palabra'
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value)}
-					/>
-					<IconButton onClick={handleSearchWords}>
-						<SearchIcon />
-					</IconButton>
-				</Box>
+				<img className='dictionary-icon' src="/images/icono-diccionario.png" alt="icono diccionario" width='10%' />
+				<Paper className='input' style={{ borderRadius: '10px', maxWidth: '100vw', minWidth: '50vw', backgroundColor: 'var(--dark-brown)', color: 'var(--white)'}}>
+					<Grid container direction='row' columns={12} spacing={2} alignItems='center'>
+						<Grid item sm={11}>
+							<InputBase
+								placeholder='Busca una o mas palabras'
+								onChange={(event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value)}
+								fullWidth={true}
+								sx={{ color: 'var(--white)' }}
+							/>
+						</Grid>
+						<Grid item sm={1}>
+							<IconButton onClick={handleSearchWords} color='inherit'>
+								<SearchIcon />
+							</IconButton>
+						</Grid>
+					</Grid>
+				</Paper>
 			</Stack>
 			<Stack mt={5}>
 				<Letters onClick={handleChosenLetter} />
 			</Stack>
-			<Stack direction='row' justifyContent={'center'} mt={5}>
-				{
-					letter && <Letter disabled size="large" value={letter} />
-				}
-			</Stack>
 			<Box>
-				<ListWords loading={loading} words={wordsResult} />
+				<ListWords searchedWord={word} loading={loading} words={wordsResult} />
 			</Box>
-		</Stack>
+		</main>
 	)
 }
