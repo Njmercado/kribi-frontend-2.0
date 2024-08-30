@@ -7,11 +7,13 @@ type OptionType = { [key: string]: string }
 export interface MultiSelectProps {
   options: OptionType,
   onChange: (option: Array<string>) => void
+  color?: string
 }
 
 export default function MultiSelect({
   options,
-  onChange
+  onChange,
+  color = 'var(--white)'
 }: MultiSelectProps) {
 
   const [chosenCategories, setChosenCategories] = useState<Array<string>>([])
@@ -49,7 +51,7 @@ export default function MultiSelect({
   return (
     <article style={{ position: 'relative' }}>
       <section>
-        <IconButton onClick={handleOnClickFilterButton} size="large">
+        <IconButton onClick={handleOnClickFilterButton} size="large" sx={{ color: color }}>
           <FilterAlt/>
         </IconButton>
       </section>
