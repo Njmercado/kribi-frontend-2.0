@@ -4,16 +4,22 @@ import { useState } from "react";
 
 export interface BaseSearcherProps {
   bgColor?: string
+  color?: string
   placeholder: string
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  action: React.ReactNode
+  action?: React.ReactNode
+  onSearch?: () => void
+  searchLocation?: 'left' | 'right'
 }
 
 export default function BaseSearcher({
   placeholder,
   onChange,
   bgColor = 'var(--white)',
+  color = 'var(--brown)',
   action,
+  onSearch,
+  searchLocation = 'left'
 }: BaseSearcherProps) {
 
   const [value, setValue] = useState<string>('');
@@ -27,18 +33,37 @@ export default function BaseSearcher({
   return (
     <Paper style={{ borderRadius: '10px', padding: '5px', backgroundColor: bgColor, minWidth: '50%' }}>
       <Grid container columns={12} direction='row' spacing={2} justifyContent='center' alignItems='center'>
-        <Grid item sm={1}> <IconButton> <SearchIcon /> </IconButton> </Grid>
-        <Grid item sm={10}>
+        {
+          searchLocation === 'left' &&
+          <Grid item sm={1}>
+            <IconButton sx={{ color: color }} onClick={onSearch}>
+              <SearchIcon />
+            </IconButton>
+          </Grid>
+        }
+        <Grid item sm={action? 10: 11}>
           <InputBase
             placeholder={placeholder}
             value={value}
             onChange={handleOnChange}
             fullWidth={true}
+            sx={{ color: color }}
           />
         </Grid>
-        <Grid item sm={1}>
-          { action }
-        </Grid>
+        {
+          searchLocation === 'right' &&
+          <Grid item sm={1}>
+            <IconButton sx={{ color: color }} onClick={onSearch}>
+              <SearchIcon />
+            </IconButton>
+          </Grid>
+        }
+        {
+          action &&
+          <Grid item sm={1}>
+            {action}
+          </Grid>
+        }
       </Grid>
     </Paper>
   )
