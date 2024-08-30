@@ -29,6 +29,8 @@ export default function Library() {
     <main style={{ backgroundColor: 'var(--white)' }}>
       <Stack direction='column' width='100' p={5} alignItems='center'>
         <FilterSearcher
+          bgColor="var(--dark-brown)"
+          color='var(--white)'
           items={books}
           onChange={setBooks}
           placeholder='Busca libros'

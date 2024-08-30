@@ -6,6 +6,7 @@ export interface FilterSearcherProps<T extends object, K extends keyof T> {
   items: Array<T>
   onChange: (value: Array<T>) => void
   bgColor?: string
+  color?: string
   placeholder: string
   options: Array<string> | { [key: string]: string } | any
   propertyToFilterBy: K
@@ -16,6 +17,7 @@ export default function FilterSearcher<T extends object, K extends keyof T>({
   items,
   onChange,
   bgColor = 'var(--white)',
+  color = 'var(--brown)',
   placeholder,
   options,
   propertyToFilterBy,
@@ -59,8 +61,9 @@ export default function FilterSearcher<T extends object, K extends keyof T>({
     <BaseSearcher
       placeholder={placeholder}
       onChange={handleSearch}
-      action={<MultiSelect options={options} onChange={handleOnMultiSelectChange} />}
+      action={<MultiSelect color={color} options={options} onChange={handleOnMultiSelectChange} />}
       bgColor={bgColor}
+      color={color}
     />
   )
 };
