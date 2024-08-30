@@ -9,10 +9,10 @@ export interface BooksProps {
 export default function Books({
   books
 }: BooksProps) {
-  return <Grid container direction='row' columns={4} justifyContent='space-around' spacing={2} mt={5}>
+  return <Grid container direction='row' justifyContent='space-around' spacing={2} mt={5}>
     {
       books.map((book: IBook, index: number) => (
-        <Grid item xs={1} key={index}>
+        <Grid item key={index} flexWrap='wrap' sx={{ width: '300px' }}>
           <Book
             name={book.name}
             image={book.image}

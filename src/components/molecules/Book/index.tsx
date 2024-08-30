@@ -28,7 +28,7 @@ export default function Book({
     <Stack>
       <Card onClick={goTo} sx={{ borderRadius: '20px', backgroundColor: getColor() }}>
         <Stack sx={{ p: 2 }}>
-          <Chip label={type} sx={{ width: '15ch', backgroundColor: 'yellow' }}></Chip>
+          <Chip label={type} sx={{ width: '15ch', backgroundColor: 'var(--yellow)' }}></Chip>
         </Stack>
         <Stack sx={{ height: 300 }}>
           {
@@ -44,7 +44,7 @@ export default function Book({
           }
         </Stack>
         <CardContent>
-          <Typography variant='body2'>{name}</Typography>
+          <Typography style={{ color: 'var(--white)' }} variant='subtitle2'>{name}</Typography>
         </CardContent>
       </Card>
     </Stack>
