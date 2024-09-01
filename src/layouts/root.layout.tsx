@@ -5,6 +5,7 @@ import { styled } from "@mui/material";
 
 const Body = styled('section')`
   min-height: 100vh;
+  background-color: var(--white);
 `
 
 export default function RootLayout() {

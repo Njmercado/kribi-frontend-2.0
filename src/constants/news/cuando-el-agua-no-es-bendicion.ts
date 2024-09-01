@@ -1,8 +1,8 @@
 export default `
 
-## Cuando el agua no es una bendición
+# Cuando el agua no es una bendición
 
-### Tasajera y la Anatomía Social
+## Tasajera y la Anatomía Social
 
 Salimos desde Barranquilla por la troncal Caribe, lo primero que encontramos al lado
 derecho de la vía una vez cruzamos el río Magdalena, es la Ciénaga Grande de Santa
