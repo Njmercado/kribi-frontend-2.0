@@ -1,7 +1,9 @@
-.center {
+.container-suto {
   width: 100%;
   display: flex; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--brown);
+  padding-bottom: 40px;
 }

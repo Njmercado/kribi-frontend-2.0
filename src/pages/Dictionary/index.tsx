@@ -1,12 +1,12 @@
 import './index.css'
 
-import { Box, Grid, IconButton, InputBase, Paper, Stack } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Stack } from "@mui/material";
 import { Letters } from "../../components/molecules";
 import { useEffect, useState } from "react";
 import { IWord } from "../../interfaces/word.interface";
 import { searchLetter, searchWord } from "../../api";
 import { ListWords } from "../../components/organisms";
+import { BaseSearcher } from '../../components/atoms';
 
 export default function Dictionary() {
 
@@ -96,23 +96,14 @@ export default function Dictionary() {
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
 			<Stack direction='column' alignItems='center' gap={2}>
 				<img className='dictionary-icon' src="/images/icono-diccionario.png" alt="icono diccionario" width='10%' />
-				<Paper className='input' style={{ borderRadius: '10px', maxWidth: '100vw', minWidth: '50vw', backgroundColor: 'var(--dark-brown)', color: 'var(--white)'}}>
-					<Grid container direction='row' columns={12} spacing={2} alignItems='center'>
-						<Grid item sm={11}>
-							<InputBase
-								placeholder='Busca una o mas palabras'
-								onChange={(event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value)}
-								fullWidth={true}
-								sx={{ color: 'var(--white)' }}
-							/>
-						</Grid>
-						<Grid item sm={1}>
-							<IconButton onClick={handleSearchWords} color='inherit'>
-								<SearchIcon />
-							</IconButton>
-						</Grid>
-					</Grid>
-				</Paper>
+				<BaseSearcher
+					placeholder='Busca una o mas palabras'
+					onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setWord(event.target.value)}
+					onSearch={handleSearchWords}
+					bgColor='var(--dark-brown)'
+					color='var(--white)'
+					searchLocation='right'
+				/>
 			</Stack>
 			<Stack mt={5}>
 				<Letters onClick={handleChosenLetter} />

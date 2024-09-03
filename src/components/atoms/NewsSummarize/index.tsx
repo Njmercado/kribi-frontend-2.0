@@ -12,7 +12,7 @@ export default function NewsSummarize({
 }: NewsSummarizeProps
 ) {
   return (
-    <Card className='container' sx={{ backgroundColor: 'black', position: 'relative' }} onClick={() => onClick(news.id)}>
+    <Card className='container' sx={{ backgroundColor: 'gray', position: 'relative', borderRadius: '10px' }} onClick={() => onClick(news.id)}>
       <CardActionArea>
         <img src={news.image} alt="" width='100%' height='100%' style={{ objectFit: 'contain' }} />
       </CardActionArea>

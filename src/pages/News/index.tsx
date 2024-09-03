@@ -17,7 +17,7 @@ export default function News() {
   function goTo(newsId: number) { navigate(`/noticias/id/${newsId}`)}
 
   return (
-    <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
       <article style={{ width: '70vw' }}>
         <Grid container direction='row' columns={2}>
           <Grid item sm={1}>

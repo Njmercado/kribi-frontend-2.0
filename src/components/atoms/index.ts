@@ -5,6 +5,8 @@ import Timer from './Timer'
 import CircularLetter from './CircularLetter'
 import NewsSummarize from './NewsSummarize';
 import SectionButton from './SectionButton';
+import BaseSearcher from './BaseSearcher';
+import Speak from './Speak';
 
 export {
   Wave,
@@ -13,5 +15,7 @@ export {
   Timer,
   CircularLetter,
   NewsSummarize,
-  SectionButton
+  SectionButton,
+  BaseSearcher,
+  Speak,
 }

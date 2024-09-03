@@ -19,10 +19,10 @@ export const SECTIONS: Array<ISection> = [
     title: 'Actividades',
     image: '/images/icono-actividades.png'
   },
-  {
-    link: '/tienda',
-    color: 'var(--milky)',
-    title: 'Tienda',
-    image: '/images/icono-tienda.png'
-  },
+  // {
+  //   link: '/tienda',
+  //   color: 'var(--milky)',
+  //   title: 'Tienda',
+  //   image: '/images/icono-tienda.png'
+  // },
 ]
