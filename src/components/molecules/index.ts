@@ -7,6 +7,7 @@ import Book from './Book'
 import FilterSearcher from './FilterSearcher';
 import Books from './Books'
 import NewsInformation from './NewsInformation';
+import SutoSection from './SutoSection';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   FilterSearcher,
   Books,
   NewsInformation,
+  SutoSection,
 }
