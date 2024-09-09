@@ -1,9 +1,9 @@
 import AlphabetSoup from "./AlphabetSoup";
-import CardsGame from "./CardsGame"
+import BuildWordsGame from "./BuildWordsGame"
 import ListWords from "./ListWords";
 
 export {
   AlphabetSoup,
-  CardsGame,
+  BuildWordsGame,
   ListWords
 }

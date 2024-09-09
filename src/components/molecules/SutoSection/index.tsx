@@ -16,6 +16,7 @@ export default function SutoSection({ title, description, key }: SutoSectionProp
     <section style={{ marginTop: '100px' }} className="container-suto" key={key}>
       <Stack direction='row'>
         <Typography variant='h4'>{title}</Typography>
+        {/* TODO: fix speak error */}
         <Speak
           onClick={() => setStop(!stop)}
           value={`${title} ${description}`}

@@ -1,26 +1,37 @@
-import axios from 'axios'
 import { WordDTO } from '../interfaces';
 import { ENDPOINTS } from '../enums';
+import DictionaryStorage from './storage';
 
 const TOKEN = import.meta.env.VITE_SERVER_TOKEN
 const SERVER_NAME = import.meta.env.VITE_SERVER_URL
 
+const storage = new DictionaryStorage()
+
 const HEADERS = new Headers();
 HEADERS.append("x-api-key", TOKEN);
 
-function getRandomWords(cuantity: number) {
-  return axios.get('/random',
-    {
-      params: {
-        cuantity
-      }
-    }
-  )
+async function getRandomWords(quantity: number = 10): Promise<Array<WordDTO>> {
+  try {
+    const response = await fetch(
+      `${SERVER_NAME}/${ENDPOINTS.GET_RANDOM_WORDS}?quantity=${quantity}`,
+      { headers: HEADERS, method: 'GET' }
+    )
+
+    const data = await response.json()
+
+    if(response.status === 200) return data
+  } catch (error) {
+    console.error("ERROR: ", error)
+  }
+
+  return [];
 }
 
 async function searchWord(words: string): Promise<Array<WordDTO>> {
 
   if (words.length < 3) return []
+
+  if (storage.word.exists(words)) return storage.word.get(words) as unknown as Array<WordDTO>
 
   try {
     const request = await fetch(
@@ -29,6 +40,8 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
     )
 
     const data = await request.json()
+
+    storage.word.save(words, data)
 
     if (request.status === 200) return data
   } catch (error) {
@@ -41,6 +54,7 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 async function searchLetter(letter: string, page: number = 0): Promise<Array<WordDTO>> {
 
   if (letter.length === 0) return []
+  if (storage.letter.exists(letter, page)) return storage.letter.get(letter, page) as unknown as Array<WordDTO>
 
   try {
     const request = await fetch(
@@ -49,6 +63,8 @@ async function searchLetter(letter: string, page: number = 0): Promise<Array<Wor
     )
 
     const data = await request.json()
+
+    storage.letter.save(letter, page, data)
 
     if (request.status === 200) return data
   } catch (error) {

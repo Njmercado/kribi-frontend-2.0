@@ -16,6 +16,7 @@ export default function Header() {
   const [clickedLink, setClickedLink] = useState<string>('')
 
   function renderLinks() {
+    // TODO: higlight the active link
     return LINKS.map((link, index) => {
       return (
         <Link key={index} to={link.link ?? '/'} onClick={() => setClickedLink(link.name)}>

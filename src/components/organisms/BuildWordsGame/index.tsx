@@ -1,21 +1,32 @@
+import './index.css'
+
 import { useEffect } from 'react'
 import { Button, Stack, Box, Typography, Chip } from "@mui/material";
 import { Timer, CircularLetter } from "../../atoms";
 import { useState } from "react";
-import { getRandomWords } from "../../../api/index.mock";
+import { getRandomWords } from "../../../api/index";
+import { IWord } from '../../../interfaces';
+import LoopIcon from '@mui/icons-material/Loop';
 
 export interface CardsGameProps { }
 
-export default function CardsGame() {
+export default function BuildWordsGame() {
 
   const RADIO = 100
   const [activate, setActivate] = useState<boolean>(false)
   const [letter, setLetter] = useState<string>('')
-  const [words, setWords] = useState<Array<string>>([])
+  const [wordsObject, setWordsObjects] = useState<Array<IWord>>([])
   const [foundWords, setFoundWords] = useState<Array<string>>([])
   const [clickedLetters, setClickedLetters] = useState<Array<number>>([])
+  var words = wordsObject.map((item: IWord) => item.palabra)
 
-  useEffect(() => setWords(getRandomWords(10)), [])
+  useEffect(() => {
+    async function fetchWords() {
+      const data = await getRandomWords(5)
+      setWordsObjects(data)
+    }
+    fetchWords()
+  }, [])
 
   useEffect(() => {
     const wordWasFoundBefore = () => foundWords.includes(letter)
@@ -90,21 +101,38 @@ export default function CardsGame() {
   return (
     <Stack>
       <Timer activate={activate} onFinish={() => setActivate(false)} />
-      <Stack direction='row' justifyContent='center' width='100%'>
-        <Typography variant='h4'>{letter}</Typography>
-      </Stack>
-      <Stack direction='row' justifyContent='center' sx={{ pb: 20, pt: 15 }}>
-        <Box sx={{ position: 'relative', width: '200px', height: '200px' }}>
-          {buildCircle()}
-          <Stack justifyContent='center' alignItems='center' height='100%' width='100%'>
-            <Typography variant='h2'>{words.length - foundWords.length}</Typography>
-          </Stack>
-        </Box>
-      </Stack>
-      <Stack direction='row' gap={2} justifyContent='center'>
-        {foundWords.map((foundWord: string) => <Chip label={foundWord} />)}
-      </Stack>
-      <Button disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
+      {
+        wordsObject.length === 0 ?
+          <div className='loader-container'>
+            <LoopIcon className='animation-spin' style={{ fontSize: '100px' }} />
+          </div> :
+          <>
+            <Stack direction='row' justifyContent='center' width='100%'>
+              <Typography variant='h4'>{letter}</Typography>
+            </Stack>
+            <Stack direction='row' justifyContent='center' sx={{ pb: 20, pt: 15 }}>
+              <Box sx={{ position: 'relative', width: '200px', height: '200px' }}>
+                {buildCircle()}
+                <Stack justifyContent='center' alignItems='center' height='100%' width='100%'>
+                  <Typography variant='h2'>{foundWords.length}</Typography>
+                </Stack>
+              </Box>
+            </Stack>
+            <Stack direction='row' gap={2} justifyContent='center'>
+              {
+                wordsObject.map(
+                  (word: IWord, index: number) => 
+                    <Chip
+                      key={index}
+                      label={word.definicion[0]} 
+                      sx={{ backgroundColor: foundWords.includes(word.palabra) ? 'var(--brown)' : 'var(--yellow)' }}
+                    />
+                )
+              }
+            </Stack>
+          </>
+      }
+      <Button variant='contained' disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
     </Stack>
   )
 }

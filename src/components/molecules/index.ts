@@ -8,6 +8,7 @@ import FilterSearcher from './FilterSearcher';
 import Books from './Books'
 import NewsInformation from './NewsInformation';
 import SutoSection from './SutoSection';
+import CardGameTemplate from './CardGameTemplate';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   Books,
   NewsInformation,
   SutoSection,
+  CardGameTemplate,
 }

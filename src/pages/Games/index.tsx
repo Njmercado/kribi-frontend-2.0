@@ -1,8 +1,9 @@
-import { Box, Grid, Card, CardContent, Skeleton, Typography, CardActions, Button, Dialog, DialogContent } from "@mui/material";
+import { Box, Grid, Dialog, DialogContent } from "@mui/material";
 import { GAMES } from "../../constants";
 import { IGame } from "../../interfaces";
 import { useEffect, useState } from "react";
-import { CardsGame } from "../../components/organisms";
+import { BuildWordsGame } from "../../components/organisms";
+import { CardGameTemplate } from "../../components/molecules";
 
 export interface GamesProps {
 
@@ -25,8 +26,8 @@ export default function Games() {
 
   function getDialogContent(gameName: string) {
     switch(gameName) {
-      case 'CardsGame':
-        return <CardsGame/>
+      case 'BuildWordsGame':
+        return <BuildWordsGame/>
       default:
         return ''
     }
@@ -44,16 +45,12 @@ export default function Games() {
           {
             GAMES.map((game: IGame, index: number) => (
               <Grid item sm={1} key={index}>
-                <Card>
-                  <Skeleton variant='rectangular' width='100%' height='20vh' animation='wave' />
-                  <CardContent>
-                    <Typography variant='h4'>{game.name}</Typography>
-                    <Typography variant='body1'>{game.description}</Typography>
-                  </CardContent>
-                  <CardActions style={{ justifyContent: 'flex-end' }}>
-                    <Button onClick={() => setGame(game.id)}>Abrir</Button>
-                  </CardActions>
-                </Card>
+                <CardGameTemplate
+                  id={game.id}
+                  name={game.name}
+                  description={game.description}
+                  onClick={setGame}
+                />
               </Grid>
             ))
           }
