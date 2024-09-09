@@ -6,7 +6,7 @@ import { getRandomWords } from "../../../api/index.mock";
 
 export interface CardsGameProps { }
 
-export default function CardsGame() {
+export default function BuildWordsGame() {
 
   const RADIO = 100
   const [activate, setActivate] = useState<boolean>(false)
@@ -104,7 +104,7 @@ export default function CardsGame() {
       <Stack direction='row' gap={2} justifyContent='center'>
         {foundWords.map((foundWord: string) => <Chip label={foundWord} />)}
       </Stack>
-      <Button disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
+      <Button variant='contained' disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
     </Stack>
   )
 }

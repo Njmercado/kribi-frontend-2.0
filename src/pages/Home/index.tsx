@@ -54,7 +54,7 @@ export default function Home() {
               </Typography>
             </Stack>
             <Wave
-              style={{ display: 'flex', marginTop: '10vh' }}
+              style={{ display: 'flex', marginTop: '11vh' }}
               fill='rgb(83, 34, 12)'
               paused={false}
               options={{
