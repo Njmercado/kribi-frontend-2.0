@@ -7,7 +7,6 @@ import NewsSummarize from './NewsSummarize';
 import SectionButton from './SectionButton';
 import BaseSearcher from './BaseSearcher';
 import Speak from './Speak';
-import CardGameTemplate from './CardGameTemplate';
 
 export {
   Wave,
@@ -19,5 +18,4 @@ export {
   SectionButton,
   BaseSearcher,
   Speak,
-  CardGameTemplate,
 }

@@ -1,9 +1,9 @@
-import { Box, Grid, Card, CardContent, Skeleton, Typography, CardActions, Button, Dialog, DialogContent } from "@mui/material";
+import { Box, Grid, Dialog, DialogContent } from "@mui/material";
 import { GAMES } from "../../constants";
 import { IGame } from "../../interfaces";
 import { useEffect, useState } from "react";
 import { BuildWordsGame } from "../../components/organisms";
-import { CardGameTemplate } from "../../components/atoms";
+import { CardGameTemplate } from "../../components/molecules";
 
 export interface GamesProps {
 
