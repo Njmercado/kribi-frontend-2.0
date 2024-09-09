@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { Button, Stack, Box, Typography, Chip } from "@mui/material";
 import { Timer, CircularLetter } from "../../atoms";
 import { useState } from "react";
-import { getRandomWords } from "../../../api/index.mock";
+import { getRandomWords } from "../../../api/index";
+import { IWord } from '../../../interfaces';
 
 export interface CardsGameProps { }
 
@@ -15,7 +16,14 @@ export default function BuildWordsGame() {
   const [foundWords, setFoundWords] = useState<Array<string>>([])
   const [clickedLetters, setClickedLetters] = useState<Array<number>>([])
 
-  useEffect(() => setWords(getRandomWords(10)), [])
+  useEffect(() => {
+    async function fetchWords() {
+      const data = await getRandomWords(10)
+      const words = data.map((item: IWord) => item.palabra)
+      setWords(words)
+    }
+    fetchWords()
+  }, [])
 
   useEffect(() => {
     const wordWasFoundBefore = () => foundWords.includes(letter)

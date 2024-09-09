@@ -49,23 +49,3 @@ export default class DictionaryStorage {
     return this._word
   }
 }
-
-// export function verifyStorageForLetter(letter: string, page: number = 0): null | object {
-//   if (localStorage.getItem(`letter_${letter}_${page}`)) 
-//     return JSON.parse(localStorage.getItem(`letter_${letter}_${page}`) || '{}');
-//   return null
-// }
-
-// export function saveStorageForLetter(letter: string, page: number, data: Array<WordDTO>) {
-//   localStorage.setItem(`letter_${letter}_${page}`, JSON.stringify(data))
-// }
-
-// export function verifyStorageForWord(word: string): null | object {
-//   if (localStorage.getItem(`word_${word}`)) 
-//     return JSON.parse(localStorage.getItem(`word_${word}`) || '{}');
-//   return null
-// }
-
-// export function saveStorageForWord(word: string, data: Array<WordDTO>) {
-//   localStorage.setItem(`word_${word}`, JSON.stringify(data))
-// }
