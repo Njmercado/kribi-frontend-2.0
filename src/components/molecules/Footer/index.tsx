@@ -1,6 +1,6 @@
-import { Facebook, Instagram } from "@mui/icons-material";
+import { Facebook, GitHub, Instagram } from "@mui/icons-material";
 import { Grid, IconButton, Stack, Typography } from "@mui/material";
-import { goToFacebook, goToInstagram } from "../../../utils/general.utils";
+import { goToFacebook, goToGithub, goToInstagram } from "../../../utils/general.utils";
 
 export default function Footer() {
   return (
@@ -27,6 +27,14 @@ export default function Footer() {
           </Grid>
           <img src="/images/logo_v2.png" alt="logo kribi" width='200px' />
         </Stack>
+      </Stack>
+      <Stack style={{ backgroundColor: 'var(--brown)' }}>
+        <Typography p={2} onClick={goToGithub}>
+          Developed by Nino Mercado
+          <span>
+            <IconButton><GitHub style={{ color: 'var(--white)' }}/></IconButton>
+          </span>
+        </Typography>
       </Stack>
     </footer>
   )
