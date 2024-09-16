@@ -1,13 +1,14 @@
 import { Facebook, Instagram } from "@mui/icons-material";
 import { Grid, IconButton, Stack, Typography } from "@mui/material";
+import { goToFacebook, goToInstagram } from "../../../utils/general.utils";
 
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: 'var(--dark-brown)', color: 'var(--white)' }}>
       <Stack direction={"column"}>
         <Stack direction={"row"} gap={2} justifyContent={"center"}>
-          <IconButton> <Facebook style={{ color: 'var(--white)' }} fontSize="large"/> </IconButton>
-          <IconButton> <Instagram style={{ color: 'var(--white)' }} fontSize="large"/> </IconButton>
+          <IconButton onClick={goToFacebook}> <Facebook style={{ color: 'var(--white)' }} fontSize="large"/> </IconButton>
+          <IconButton onClick={goToInstagram}> <Instagram style={{ color: 'var(--white)' }} fontSize="large"/> </IconButton>
         </Stack>
         <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} p={2}>
           <Grid direction={"row"} columns={3} width={"100%"}>
