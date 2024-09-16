@@ -41,9 +41,11 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
     const data = await request.json()
 
-    storage.word.save(words, data)
 
-    if (request.status === 200) return data
+    if (request.status === 200) {
+      storage.word.save(words, data)
+      return data
+    }
   } catch (error) {
     console.error("ERROR: ", error)
   }
@@ -64,9 +66,10 @@ async function searchLetter(letter: string, page: number = 0): Promise<Array<Wor
 
     const data = await request.json()
 
-    storage.letter.save(letter, page, data)
-
-    if (request.status === 200) return data
+    if (request.status === 200) {
+      storage.letter.save(letter, page, data)
+      return data
+    }
   } catch (error) {
     console.error("ERROR: ", error)
   }

@@ -92,8 +92,6 @@ export default function Dictionary() {
 		setPage(value);
 	}
 
-	// TODO: fix error of separating by comma the translations
-
 	return (
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
 			<Stack direction='column' alignItems='center' gap={2}>
