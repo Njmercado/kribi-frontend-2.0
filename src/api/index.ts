@@ -31,7 +31,7 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
   if (words.length < 3) return []
 
-  if (storage.word.exists(words)) return storage.word.get(words) as unknown as Array<WordDTO>
+  if (storage.word.exists(words)) return storage.word.get(words);
 
   try {
     const request = await fetch(
@@ -54,9 +54,9 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 }
 
 async function searchLetter(letter: string, page: number = 0): Promise<Array<WordDTO>> {
-
+  const KEY = `${letter}/${page}`
   if (letter.length === 0) return []
-  if (storage.letter.exists(letter, page)) return storage.letter.get(letter, page) as unknown as Array<WordDTO>
+  if (storage.letter.exists(KEY)) return storage.letter.get(KEY);
 
   try {
     const request = await fetch(
@@ -67,7 +67,7 @@ async function searchLetter(letter: string, page: number = 0): Promise<Array<Wor
     const data = await request.json()
 
     if (request.status === 200) {
-      storage.letter.save(letter, page, data)
+      storage.letter.save(KEY, data)
       return data
     }
   } catch (error) {
