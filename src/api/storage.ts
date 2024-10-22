@@ -1,34 +1,30 @@
 import { WordDTO } from "../interfaces";
 
-class LetterStorage {
-  constructor() {}
+export class Storage {
+  constructor(public store: string) {}
 
-  save(letter: string, page: number, data: Array<WordDTO>) {
-    localStorage.setItem(`letter/${letter}/${page}`, JSON.stringify(data))
+  save(key: string, data: Array<WordDTO>) {
+    localStorage.setItem(`${this.store}/${key}`, JSON.stringify(data))
   }
 
-  get(letter: string, page: number) {
-    return JSON.parse(localStorage.getItem(`letter/${letter}/${page}`) || '{}');
+  get(key: string): Array<WordDTO> {
+    return JSON.parse(localStorage.getItem(`${this.store}/${key}`) || '{}');
   }
-
-  exists(letter: string, page: number) {
-    return !!localStorage.getItem(`letter/${letter}/${page}`);
+  
+  exists(key: string): boolean {
+    return !!localStorage.getItem(`${this.store}/${key}`);
   }
 }
 
-class WordStorage {
-  constructor() {}
-
-  save(word: string, data: Array<WordDTO>) {
-    localStorage.setItem(`word/${word}`, JSON.stringify(data))
+class LetterStorage extends Storage {
+  constructor() {
+    super('letter');
   }
+}
 
-  get(word: string) {
-    return JSON.parse(localStorage.getItem(`word/${word}`) || '{}');
-  }
-
-  exists(word: string) {
-    return !!localStorage.getItem(`letter/${word}`);
+class WordStorage extends Storage {
+  constructor() {
+    super('word');
   }
 }
 
@@ -42,10 +38,14 @@ export default class DictionaryStorage {
   }
 
   get letter() {
+    if(this._letter) { return this._letter; }
+    this._letter = new LetterStorage();
     return this._letter;
   }
 
   get word() {
-    return this._word
+    if(this._word) { return this._word; }
+    this._word = new WordStorage();
+    return this._word;
   }
 }
