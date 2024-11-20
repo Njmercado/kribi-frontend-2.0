@@ -9,6 +9,7 @@ import Books from './Books'
 import NewsInformation from './NewsInformation';
 import SutoSection from './SutoSection';
 import CardGameTemplate from './CardGameTemplate';
+import Donation from './Donation';
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   NewsInformation,
   SutoSection,
   CardGameTemplate,
+  Donation,
 }
