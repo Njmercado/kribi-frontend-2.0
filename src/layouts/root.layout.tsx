@@ -1,22 +1,24 @@
 import { Outlet } from "react-router-dom";
-import { Header, Footer } from "../components/molecules"
+import { Header, Footer, Donation } from "../components/molecules"
 import "./root.layout.css"
 import { styled } from "@mui/material";
 
 const Body = styled('section')`
   min-height: 100vh;
   background-color: var(--white);
+  position: relative;
 `
 
 export default function RootLayout() {
   return (
     <main>
       <article>
-        <Header/>
+        <Header />
         <Body>
-          <Outlet/>
+          <Outlet />
+          <Donation/>
         </Body>
-        <Footer/>
+        <Footer />
       </article>
     </main>
   )
