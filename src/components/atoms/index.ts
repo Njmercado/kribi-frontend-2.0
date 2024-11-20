@@ -7,6 +7,8 @@ import NewsSummarize from './NewsSummarize';
 import SectionButton from './SectionButton';
 import BaseSearcher from './BaseSearcher';
 import Speak from './Speak';
+import Vaki from './Vaki';
+import FloatingButton from '../atoms/FloatingButton';
 
 export {
   Wave,
@@ -18,4 +20,6 @@ export {
   SectionButton,
   BaseSearcher,
   Speak,
+  Vaki,
+  FloatingButton
 }
