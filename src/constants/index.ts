@@ -3,6 +3,7 @@ import BOOKS from "./books.constant"
 import GAMES from "./games.constant"
 import COLORS from "./colors.constant"
 import AVAILABLE_NEWS from "./available_news.constant";
+import SCREENS from "./screens";
 
 export {
     LETTERS,
@@ -10,4 +11,5 @@ export {
     GAMES,
     COLORS,
     AVAILABLE_NEWS,
+    SCREENS,
 };

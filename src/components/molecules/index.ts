@@ -10,6 +10,8 @@ import NewsInformation from './NewsInformation';
 import SutoSection from './SutoSection';
 import CardGameTemplate from './CardGameTemplate';
 import Donation from './Donation';
+import DrawerHeader from './DrawerHeader';
+import NavigationHeader from './NavigationHeader';
 
 export {
   Header,
@@ -24,4 +26,6 @@ export {
   SutoSection,
   CardGameTemplate,
   Donation,
+  DrawerHeader,
+  NavigationHeader
 }
