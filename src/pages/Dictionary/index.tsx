@@ -30,7 +30,7 @@ export default function Dictionary() {
 	async function search(searchFunction: () => Promise<IWord[]>): Promise<IWord[]> {
 		setLoading(true)
 		const result = await searchFunction()
-		setTimeout(() => setLoading(false), 1000)
+		setLoading(false);
 		return result
 	}
 
@@ -68,13 +68,13 @@ export default function Dictionary() {
 
 		if (letterIsNotEmpty()) {
 			reset()
-			handleWordsResult(getSearchLetterResult(letter, 0))
+			handleWordsResult(getSearchLetterResult(letter, 1))
 		}
 	}, [letter])
 
 	// When user scrolls to the bottom of the page, the next page is loaded
 	useEffect(() => {
-		if (page !== undefined && page > 0) handleWordsResult(getSearchLetterResult(letter, page))
+		if (page !== undefined && page > 1) handleWordsResult(getSearchLetterResult(letter, page))
 	}, [page])
 
 	// infinite scroll

@@ -3,7 +3,7 @@ import { ENDPOINTS } from '../enums';
 import DictionaryStorage from './storage';
 
 const TOKEN = import.meta.env.VITE_SERVER_TOKEN
-const SERVER_NAME = import.meta.env.VITE_SERVER_URL
+const SERVER_NAME = import.meta.env.DEV ? import.meta.env.VITE_DEV_SERVER_URL : import.meta.env.VITE_SERVER_URL
 
 const storage = new DictionaryStorage()
 
@@ -19,7 +19,7 @@ async function getRandomWords(quantity: number = 10): Promise<Array<WordDTO>> {
 
     const data = await response.json()
 
-    if(response.status === 200) return data
+    if (response.status === 200) return data
   } catch (error) {
     console.error("ERROR: ", error)
   }
@@ -35,8 +35,8 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
   try {
     const request = await fetch(
-      `${SERVER_NAME}/${ENDPOINTS.GET_WORDS_BY_WORD}?words=${words}`,
-      { headers: HEADERS, method: 'GET' }
+      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_WORD}${words}`,
+      { method: 'GET' }
     )
 
     const data = await request.json()
@@ -53,14 +53,14 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
   return []
 }
 
-async function searchLetter(letter: string, page: number = 0): Promise<Array<WordDTO>> {
+async function searchLetter(letter: string, page: number = 1): Promise<Array<WordDTO>> {
   const KEY = `${letter}/${page}`
   if (letter.length === 0) return []
   if (storage.letter.exists(KEY)) return storage.letter.get(KEY);
 
   try {
     const request = await fetch(
-      `${SERVER_NAME}/${ENDPOINTS.GET_WORDS_BY_LETTER}?letter=${letter}&page=${page}`,
+      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_LETTER}${letter}/?page=${page}&limit=10`,
       { headers: HEADERS, method: 'GET' }
     )
 

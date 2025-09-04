@@ -17,7 +17,7 @@ export default function ListWords({
 	function buildWords() {
 		return words.map((word: IWord) => (
 			<Grid item sm={1}>
-				<WordInfo searchedWord={searchedWord} value={word.palabra} translations={word.definicion} from='pal'/>
+				<WordInfo searchedWord={searchedWord} value={word.word} translations={word.translations} from='pal'/>
 			</Grid>
 		))
 	}
