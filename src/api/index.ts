@@ -2,18 +2,16 @@ import { WordDTO } from '../interfaces';
 import { ENDPOINTS } from '../enums';
 import DictionaryStorage from './storage';
 
-const TOKEN = import.meta.env.VITE_SERVER_TOKEN
-const SERVER_NAME = import.meta.env.DEV ? import.meta.env.VITE_DEV_SERVER_URL : import.meta.env.VITE_SERVER_URL
+const SERVER_NAME = import.meta.env.VITE_SERVER_URL
 
 const storage = new DictionaryStorage()
 
 const HEADERS = new Headers();
-HEADERS.append("x-api-key", TOKEN);
 
 async function getRandomWords(quantity: number = 10): Promise<Array<WordDTO>> {
   try {
     const response = await fetch(
-      `${SERVER_NAME}/${ENDPOINTS.GET_RANDOM_WORDS}?quantity=${quantity}`,
+      `${SERVER_NAME}${ENDPOINTS.GET_RANDOM_WORDS}?quantity=${quantity}`,
       { headers: HEADERS, method: 'GET' }
     )
 
@@ -35,7 +33,7 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
   try {
     const request = await fetch(
-      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_WORD}${words}`,
+      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_WORD}?word=${words}`,
       { method: 'GET' }
     )
 

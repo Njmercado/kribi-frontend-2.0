@@ -60,7 +60,11 @@ export default function Dictionary() {
 		}
 	}
 
-	useEffect(() => { if (word.length === 0) reset() }, [word])
+	useEffect(() => {
+		if (word.length === 0) {
+			reset()
+		}
+	}, [word])
 
 	useEffect(() => {
 
@@ -74,8 +78,10 @@ export default function Dictionary() {
 
 	// When user scrolls to the bottom of the page, the next page is loaded
 	useEffect(() => {
-		if (page !== undefined && page > 1) handleWordsResult(getSearchLetterResult(letter, page))
-	}, [page])
+		if (page !== undefined && page > 1) {
+			handleWordsResult(getSearchLetterResult(letter, page))
+		}
+	}, [page, letter])
 
 	// infinite scroll
 	window.onscroll = function () {
@@ -87,11 +93,7 @@ export default function Dictionary() {
 		}
 	}
 
-	// @ts-expect-error Event is not used but is necessary due i cant use destructure in the onChange function
-	function handleOnChangePagination(event: React.ChangeEvent<unknown>, value: number) {
-		setPage(value);
-	}
-
+	// TODO: Fix error when only 3 or less words are found. In that case the cards do not fill the entire width of the screen
 	return (
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
 			<Stack direction='column' alignItems='center' gap={2}>
