@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Stack, Pagination } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Pagination, Stack } from "@mui/material";
 import { BOOKS } from "../../constants";
 import { Books } from "../../components/molecules";
 import { IBook } from "../../interfaces";
@@ -14,40 +14,61 @@ export default function Library() {
   const [page, setPage] = useState<number>(1)
 
   function sliceBooks() {
-    const lowerLimit = (page-1)*BOOKS_LIMIT
+    const lowerLimit = (page - 1) * BOOKS_LIMIT
     let upperLimit = lowerLimit + BOOKS_LIMIT
 
-    if(upperLimit > books.length) upperLimit = books.length
+    if (upperLimit > books.length) upperLimit = books.length
 
     return books.slice(lowerLimit, upperLimit)
   }
 
   useEffect(() => setPaginatedBooks(sliceBooks()), [page, books])
-  useEffect(() => { if(page !== 1) setPage(1) }, [books])
+  useEffect(() => { if (page !== 1) setPage(1) }, [books])
+
+  // TODO: Look for a better way to implement the filter and search, there is so much loops.
+  function queryBooks(query: string, filters: Array<string> | undefined) {
+    if (query.length === 0 && filters?.length === 0) {
+      setBooks(BOOKS)
+      return
+    }
+
+    const filteredBooks = BOOKS.filter((book: IBook) => {
+      const bookName = book.name.toLowerCase()
+      const queryLower = query.toLowerCase()
+
+      if (query.length === 0) {
+        return filters?.includes(book.type)
+      }
+
+      if (filters?.length === 0) {
+        return bookName.includes(queryLower)
+      }
+
+      return (
+        bookName.includes(queryLower) &&
+        filters?.includes(book.type)
+      )
+    })
+
+    setBooks(filteredBooks)
+  }
 
   return (
     <main style={{ backgroundColor: 'var(--white)' }}>
-      <Stack direction='column' width='100' p={5} alignItems='center'>
+      <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' width='100%' p={1}>
         <FilterSearcher
           bgColor="var(--dark-brown)"
           color='var(--white)'
-          items={books}
-          onChange={setBooks}
+          onChange={queryBooks}
           placeholder='Busca libros'
-          options={BookCategoryEnum}
-          propertyToFilterBy='name'
-          filterByOptions={(books: Array<IBook>, chosenCategories: Array<string>) => {
-            if (chosenCategories.length === 0) return books
-            return books.filter((book: IBook) => chosenCategories.includes(book.type.toUpperCase()));
-          }}
+          filterOptions={BookCategoryEnum}
         />
-        <Books books={paginatedBooks}/>
+        <Books books={paginatedBooks} />
         <Pagination
           sx={{ mt: 5 }}
-          count={Math.ceil(books.length/BOOKS_LIMIT)}
+          count={Math.ceil(books.length / BOOKS_LIMIT)}
           page={page}
-          // @ts-expect-error Event is not used but is necessary due i cant use destructure in the onChange function
-          onChange={(event: React.ChangeEvent<unknown>, value: number) => setPage(value)}
+          onChange={(_, value: number) => setPage(value)}
           size='large'
         />
       </Stack>

@@ -1,4 +1,3 @@
-import Wave from './Wave';
 import Letter from './Letter'
 import MultiSelect from './MultiSelect'
 import Timer from './Timer'
@@ -11,7 +10,6 @@ import Vaki from './Vaki';
 import FloatingButton from '../atoms/FloatingButton';
 
 export {
-  Wave,
   Letter,
   MultiSelect,
   Timer,
