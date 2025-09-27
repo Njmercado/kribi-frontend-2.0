@@ -1,4 +1,4 @@
-import { Grid, IconButton, InputBase, Paper } from "@mui/material"
+import { Grid2, IconButton, InputBase, Paper, Divider } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from "react";
 
@@ -7,9 +7,7 @@ export interface BaseSearcherProps {
   color?: string
   placeholder: string
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  action?: React.ReactNode
   onSearch?: () => void
-  searchLocation?: 'left' | 'right'
 }
 
 export default function BaseSearcher({
@@ -17,9 +15,7 @@ export default function BaseSearcher({
   onChange,
   bgColor = 'var(--white)',
   color = 'var(--brown)',
-  action,
   onSearch,
-  searchLocation = 'left'
 }: BaseSearcherProps) {
 
   const [value, setValue] = useState<string>('');
@@ -31,40 +27,24 @@ export default function BaseSearcher({
   }
 
   return (
-    <Paper style={{ borderRadius: '10px', padding: '5px', backgroundColor: bgColor, minWidth: '50%' }}>
-      <Grid container columns={12} direction='row' spacing={2} justifyContent='center' alignItems='center'>
-        {
-          searchLocation === 'left' &&
-          <Grid item sm={1}>
-            <IconButton sx={{ color: color }} onClick={onSearch}>
-              <SearchIcon />
-            </IconButton>
-          </Grid>
-        }
-        <Grid item sm={action? 10: 11}>
+    <Paper style={{ borderRadius: '10px', padding: '5px', backgroundColor: bgColor, minWidth: '50%', height: '40px' }}>
+      <Grid2 container columns={12} direction='row' spacing={2} justifyContent='space-between' alignItems='center'>
+        <Grid2 size={10}>
           <InputBase
             placeholder={placeholder}
             value={value}
             onChange={handleOnChange}
             fullWidth={true}
-            sx={{ color: color }}
+            sx={{ color: color, px: 2 }}
           />
-        </Grid>
-        {
-          searchLocation === 'right' &&
-          <Grid item sm={1}>
-            <IconButton sx={{ color: color }} onClick={onSearch}>
-              <SearchIcon />
-            </IconButton>
-          </Grid>
-        }
-        {
-          action &&
-          <Grid item sm={1}>
-            {action}
-          </Grid>
-        }
-      </Grid>
+        </Grid2>
+        <Divider orientation="vertical" />
+        <Grid2 size={1}>
+          <IconButton sx={{ color: color }} onClick={onSearch}>
+            <SearchIcon />
+          </IconButton>
+        </Grid2>
+      </Grid2>
     </Paper>
   )
 }

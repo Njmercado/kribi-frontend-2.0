@@ -1,5 +1,4 @@
-import { FilterAlt } from "@mui/icons-material";
-import { Checkbox, IconButton, ListItemText, MenuItem, Paper } from "@mui/material";
+import { Checkbox, ListItemText, MenuItem, Paper } from "@mui/material";
 import { useState } from "react";
 
 type OptionType = { [key: string]: string }
@@ -21,7 +20,7 @@ export default function MultiSelect({
   function handleOnChange(value: string) {
 
     const isAlreadyChosen = () => chosenCategories.indexOf(value) > -1
-    var newChosenCategories = []
+    let newChosenCategories = []
 
     if(isAlreadyChosen()) {
       newChosenCategories = chosenCategories.filter((category: string) => category !== value)
@@ -42,25 +41,11 @@ export default function MultiSelect({
     ))
   }
 
-  const [open, setOpen] = useState(false)
-
-  function handleOnClickFilterButton() {
-    setOpen(!open)
-  }
-
   return (
-    <article style={{ position: 'relative' }}>
+    <article style={{ height: '100%', width: '100%' }}>
       <section>
-        <IconButton onClick={handleOnClickFilterButton} size="large" sx={{ color: color }}>
-          <FilterAlt/>
-        </IconButton>
+        <Paper sx={{ bgColor: color }}> { buildOptions() } </Paper>
       </section>
-      {
-        open && 
-      <section style={{ position: 'absolute', zIndex: 10, maxHeight: '50px' }}>
-        <Paper> { buildOptions() } </Paper>
-      </section>
-      }
     </article>
   )
 }
