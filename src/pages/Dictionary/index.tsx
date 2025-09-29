@@ -102,7 +102,6 @@ export default function Dictionary() {
 					onSearch={handleSearchWords}
 					bgColor='var(--dark-brown)'
 					color='var(--white)'
-					searchLocation='right'
 				/>
 			</Stack>
 			<Stack mt={5}>
