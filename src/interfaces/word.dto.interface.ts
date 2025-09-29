@@ -1,6 +1,7 @@
 export interface WordDTO {
-  palabra: string;
-  definicion: string[];
-  ejemplos: string[];
-  popularidad: number;
+  definitions: string[];
+  type: string;
+  word: string;
+  id: number;
+  translations: string[];
 }

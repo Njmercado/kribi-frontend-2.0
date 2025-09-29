@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material"
+import { Grid2, Stack } from "@mui/material"
 import { IWord } from "../../../interfaces"
 import { WordInfo } from "../../molecules"
 
@@ -13,20 +13,20 @@ export default function ListWords({
   loading,
   searchedWord
 }: ListWordsProps) {
-  
-	function buildWords() {
-		return words.map((word: IWord) => (
-			<Grid item sm={1}>
-				<WordInfo searchedWord={searchedWord} value={word.palabra} translations={word.definicion} from='pal'/>
-			</Grid>
-		))
-	}
+
+  function buildWords() {
+    return words.map((word: IWord) => (
+      <Grid2 key={word.id} size={{ xs: 3, sm: 2, md: 1, lg: 1 }}>
+        <WordInfo searchedWord={searchedWord} word={word} from='pal' />
+      </Grid2>
+    ))
+  }
 
   return (
     <Stack direction='column' p={8} justifyContent={'center'} alignItems={'center'}>
-      <Grid container flexWrap={'wrap'} direction='row' columns={4} spacing={2} justifyContent='space-around'>
+      <Grid2 container direction='row' columns={3} spacing={2} justifyContent='center'>
         {buildWords()}
-      </Grid>
+      </Grid2>
       {
         loading &&
         <h4>loading...</h4>

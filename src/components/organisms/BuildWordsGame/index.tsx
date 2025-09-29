@@ -1,7 +1,7 @@
 import './index.css'
 
 import { useEffect } from 'react'
-import { Button, Stack, Box, Typography, Chip } from "@mui/material";
+import { Button, Stack, Box, Typography, Chip, Grid2 } from "@mui/material";
 import { Timer, CircularLetter } from "../../atoms";
 import { useState } from "react";
 import { getRandomWords } from "../../../api/index";
@@ -18,7 +18,7 @@ export default function BuildWordsGame() {
   const [wordsObject, setWordsObjects] = useState<Array<IWord>>([])
   const [foundWords, setFoundWords] = useState<Array<string>>([])
   const [clickedLetters, setClickedLetters] = useState<Array<number>>([])
-  var words = wordsObject.map((item: IWord) => item.palabra)
+  const words = wordsObject.map((item: IWord) => item.word)
 
   useEffect(() => {
     async function fetchWords() {
@@ -118,21 +118,21 @@ export default function BuildWordsGame() {
                 </Stack>
               </Box>
             </Stack>
-            <Stack direction='row' gap={2} justifyContent='center'>
+            <Grid2 container gap={1} justifyContent='center'>
               {
                 wordsObject.map(
                   (word: IWord, index: number) => 
                     <Chip
                       key={index}
-                      label={word.definicion[0]} 
-                      sx={{ backgroundColor: foundWords.includes(word.palabra) ? 'var(--brown)' : 'var(--yellow)' }}
+                      label={word.definitions[0]} 
+                      sx={{ backgroundColor: foundWords.includes(word.word) ? 'var(--brown)' : 'var(--yellow)' }}
                     />
                 )
               }
-            </Stack>
+            </Grid2>
           </>
       }
-      <Button variant='contained' disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
+      <Button sx={{ mt: 2 }} variant='contained' disabled={activate} onClick={() => setActivate(true)}>comenzar</Button>
     </Stack>
   )
 }
