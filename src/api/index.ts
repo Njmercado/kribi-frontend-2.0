@@ -58,7 +58,7 @@ async function searchLetter(letter: string, page: number = 1): Promise<Array<Wor
 
   try {
     const request = await fetch(
-      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_LETTER}${letter}/?page=${page}&limit=10`,
+      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_LETTER}${letter}?page=${page}&limit=10`,
       { headers: HEADERS, method: 'GET' }
     )
 
