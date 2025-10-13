@@ -7,20 +7,20 @@ import { IWord } from "../../interfaces/word.interface";
 import { searchLetter, searchWord } from "../../api";
 import { ListWords } from "../../components/organisms";
 import { BaseSearcher } from '../../components/atoms';
+import { Button } from '../../components/atoms';
 
 export default function Dictionary() {
 
 	const [letter, setLetter] = useState<string>('')
 	const [word, setWord] = useState<string>('')
-	const [page, setPage] = useState<number>()
+	const [page, setPage] = useState<number>(1)
 	const [wordsResult, setWordsResult] = useState<IWord[]>([])
 	const [loading, setLoading] = useState<boolean>(false)
-	const [keepScrolling, setKeepScrolling] = useState<boolean>(true);
+	const [areMoreWords, setAreMoreWords] = useState<boolean>(false)
 
 	function reset() {
-		setKeepScrolling(true)
 		setWordsResult([])
-		setPage(0)
+		setPage(1)
 	}
 
 	function handleChosenLetter(value: string) {
@@ -43,11 +43,10 @@ export default function Dictionary() {
 	}
 
 	async function handleWordsResult(words: Promise<IWord[]>) {
-		const isEmpty = (await words).length === 0;
-		if (isEmpty) setKeepScrolling(false);
-		else {
-			words.then(newWords => setWordsResult(oldWords => [...oldWords, ...newWords]));
-		}
+		words.then(newWords => {
+			setWordsResult(oldWords => [...oldWords, ...newWords]);
+			setAreMoreWords(newWords.length > 0);
+		});
 	}
 
 	function handleSearchWords() {
@@ -76,24 +75,11 @@ export default function Dictionary() {
 		}
 	}, [letter])
 
-	// When user scrolls to the bottom of the page, the next page is loaded
-	useEffect(() => {
-		if (page !== undefined && page > 1) {
-			handleWordsResult(getSearchLetterResult(letter, page))
-		}
-	}, [page, letter])
-
-	// infinite scroll
-	window.onscroll = function () {
-		if (!keepScrolling) return;
-
-		if (window.innerHeight + window.scrollY === document.body.scrollHeight) {
-			if (loading || letter.length === 0) return;
-			else setPage((page ?? 0) + 1);
-		}
+	function handleLoadMore() {
+		setPage(page + 1);
+		handleWordsResult(getSearchLetterResult(letter, page + 1));
 	}
 
-	// TODO: Fix error when only 3 or less words are found. In that case the cards do not fill the entire width of the screen
 	return (
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
 			<Stack direction='column' alignItems='center' gap={2}>
@@ -110,7 +96,13 @@ export default function Dictionary() {
 				<Letters onClick={handleChosenLetter} />
 			</Stack>
 			<Box>
-				<ListWords searchedWord={word} loading={loading} words={wordsResult} />
+				<ListWords searchedWord={word} words={wordsResult} />
+				{
+					areMoreWords &&
+					<Stack direction='row' justifyContent='center' alignItems='center'>
+						<Button onClick={handleLoadMore} value={loading ? "Cargando..." : "Cargar más palabras"}/>
+					</Stack>
+				}
 			</Box>
 		</main>
 	)

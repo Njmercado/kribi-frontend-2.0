@@ -7,7 +7,8 @@ import SectionButton from './SectionButton';
 import BaseSearcher from './BaseSearcher';
 import Speak from './Speak';
 import Vaki from './Vaki';
-import FloatingButton from '../atoms/FloatingButton';
+import FloatingButton from './FloatingButton';
+import Button from './Button';
 
 export {
   Letter,
@@ -19,5 +20,6 @@ export {
   BaseSearcher,
   Speak,
   Vaki,
-  FloatingButton
+  FloatingButton,
+  Button
 }

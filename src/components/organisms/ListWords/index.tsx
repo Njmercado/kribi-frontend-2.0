@@ -4,14 +4,12 @@ import { WordInfo } from "../../molecules"
 
 interface ListWordsProps {
   words: IWord[]
-  loading: boolean
   searchedWord?: string
 }
 
 export default function ListWords({
   words,
-  loading,
-  searchedWord
+  searchedWord,
 }: ListWordsProps) {
 
   function buildWords() {
@@ -27,10 +25,6 @@ export default function ListWords({
       <Grid2 container direction='row' columns={3} spacing={2} justifyContent='center'>
         {buildWords()}
       </Grid2>
-      {
-        loading &&
-        <h4>loading...</h4>
-      }
     </Stack>
   )
 }
