@@ -98,7 +98,7 @@ export default function Dictionary() {
 			<Box>
 				<ListWords searchedWord={word} words={wordsResult} />
 				{
-					areMoreWords &&
+					areMoreWords && letter.length > 0 &&
 					<Stack direction='row' justifyContent='center' alignItems='center'>
 						<Button onClick={handleLoadMore} value={loading ? "Cargando..." : "Cargar más palabras"}/>
 					</Stack>
