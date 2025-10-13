@@ -34,6 +34,7 @@ export default function BaseSearcher({
             placeholder={placeholder}
             value={value}
             onChange={handleOnChange}
+            onKeyDown={(e) => e.key === 'Enter' && onSearch && onSearch()}
             fullWidth={true}
             sx={{ color: color, px: 2 }}
           />
