@@ -2,7 +2,7 @@ import { WordDTO } from '../interfaces';
 import { ENDPOINTS } from '../enums';
 import DictionaryStorage from './storage';
 
-const SERVER_NAME = import.meta.env.VITE_DEV_SERVER_URL
+const SERVER_NAME = import.meta.env.VITE_SERVER_URL
 
 const storage = new DictionaryStorage()
 
