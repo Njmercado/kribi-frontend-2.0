@@ -9,11 +9,9 @@ interface SutoSectionProps {
 export default function SutoSection({ title, description, key }: SutoSectionProps) {
 
   return (
-    <section style={{ marginTop: '100px' }} className="container-suto" key={key}>
-      <Stack direction='row'>
-        <Typography variant='h4'>{title}</Typography>
-      </Stack>
-      <Typography variant='body1' sx={{ mt: 5 }}>{description}</Typography>
-    </section>
+    <Stack mt={10} key={key}>
+      <Typography variant='h4' textAlign='center'>{title}</Typography>
+      <Typography variant='body1' sx={{ mt: 5, maxWidth: '100ch', textAlign: 'justify', mx: '2ch' }}>{description}</Typography>
+    </Stack>
   );
 }
