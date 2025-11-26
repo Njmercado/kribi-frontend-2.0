@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Header, Footer, Donation } from "../components/molecules"
+import { Header, Footer } from "../components/molecules"
 import "./root.layout.css"
 import { styled } from "@mui/material";
 
@@ -16,7 +16,6 @@ export default function RootLayout() {
         <Header />
         <Body>
           <Outlet />
-          <Donation/>
         </Body>
         <Footer />
       </article>

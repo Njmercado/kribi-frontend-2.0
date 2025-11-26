@@ -5,7 +5,7 @@ import { SutoSection } from '../../components/molecules';
 export default function AboutUs() {
   return (
     <main className='container-suto'>
-      <article style={{ width: '110ch' }}>
+      <article>
         <section>
           {/* TODO: show a carrousel with all devs and admins information   */}
         </section>

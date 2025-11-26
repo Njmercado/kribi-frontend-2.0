@@ -20,7 +20,7 @@ export default function SectionButton({
   return (
     <Paper onClick={goToLink} sx={{ bgcolor: color, borderRadius: '10px', transition: 'all 200ms' }} className="paper">
       <Stack justifyContent='center' alignItems='center' p={2}>
-        <img src={image} alt="" width='150px' />
+        <img src={image} alt="" width='100vw' />
         <Typography variant='h6' color='white' fontWeight='bold'>{title}</Typography>
       </Stack>
     </Paper>
