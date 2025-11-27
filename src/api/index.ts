@@ -8,6 +8,23 @@ const storage = new DictionaryStorage()
 
 const HEADERS = new Headers();
 
+// Check if 6 hours have passed since the last cleanup
+const LAST_CLEANUP_KEY = 'kribi_last_cleanup';
+const TWENTY_FOUR_HOURS = 1000 * 60 * 60 * 6;
+
+const lastCleanup = localStorage.getItem(LAST_CLEANUP_KEY);
+const now = Date.now();
+
+if (!lastCleanup) {
+  // First time running: set the timestamp so it cleans 6h from now
+  localStorage.setItem(LAST_CLEANUP_KEY, now.toString());
+} else {
+  if (now - parseInt(lastCleanup) > TWENTY_FOUR_HOURS) {
+    storage.cleanStorage();
+    localStorage.setItem(LAST_CLEANUP_KEY, now.toString());
+  }
+}
+
 async function getRandomWords(quantity: number = 10): Promise<Array<WordDTO>> {
   try {
     const response = await fetch(
