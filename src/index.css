@@ -22,7 +22,8 @@
   --dark-brown: rgb(95, 51, 35);
   --milky: rgb(200, 118, 36);
   --red: rgb(172, 49, 34);
-  --green: #8cc640
+  --green: #8cc640;
+  --cream: #ffffff;
 }
 
 a {
@@ -30,6 +31,7 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -58,9 +60,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -74,9 +78,11 @@ button:focus-visible {
     --primary: rgb(83, 34, 12);
     --primary-contrast: #fff6de;
   }
+
   a:hover {
     color: #5f3323;
   }
+
   button {
     background-color: #f9f9f9;
   }

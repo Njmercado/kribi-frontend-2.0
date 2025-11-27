@@ -4,4 +4,5 @@ export interface INews {
   label: string;
   data: string;
   image: string;
+  description: string;
 }
