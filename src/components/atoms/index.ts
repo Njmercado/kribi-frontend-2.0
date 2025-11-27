@@ -9,6 +9,7 @@ import Speak from './Speak';
 import Vaki from './Vaki';
 import FloatingButton from './FloatingButton';
 import Button from './Button';
+import SEO from './SEO';
 
 export {
   Letter,
@@ -21,5 +22,6 @@ export {
   Speak,
   Vaki,
   FloatingButton,
-  Button
+  Button,
+  SEO
 }

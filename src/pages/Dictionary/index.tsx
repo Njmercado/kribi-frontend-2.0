@@ -8,6 +8,7 @@ import { searchLetter, searchWord } from "../../api";
 import { ListWords } from "../../components/organisms";
 import { BaseSearcher } from '../../components/atoms';
 import { Button } from '../../components/atoms';
+import { SEO } from '../../components/atoms';
 
 export default function Dictionary() {
 
@@ -82,6 +83,10 @@ export default function Dictionary() {
 
 	return (
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
+			<SEO
+				title="Diccionario"
+				description="Encuentra palabras en el diccionario de Kribí. Palabras en palenquero, definición y traducción."
+			/>
 			<Stack direction='column' alignItems='center' gap={2}>
 				<img className='dictionary-icon' src="/images/icono-diccionario.png" alt="icono diccionario" width='10%' />
 				<BaseSearcher
@@ -100,7 +105,7 @@ export default function Dictionary() {
 				{
 					areMoreWords && letter.length > 0 &&
 					<Stack direction='row' justifyContent='center' alignItems='center'>
-						<Button onClick={handleLoadMore} value={loading ? "Cargando..." : "Cargar más palabras"}/>
+						<Button onClick={handleLoadMore} value={loading ? "Cargando..." : "Cargar más palabras"} />
 					</Stack>
 				}
 			</Box>

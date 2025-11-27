@@ -5,6 +5,7 @@ import { Books } from "../../components/molecules";
 import { IBook } from "../../interfaces";
 import FilterSearcher from "../../components/molecules/FilterSearcher";
 import { BookCategoryEnum } from "../../enums";
+import { SEO } from "../../components/atoms";
 
 export default function Library() {
 
@@ -55,6 +56,10 @@ export default function Library() {
 
   return (
     <main style={{ backgroundColor: 'var(--white)' }}>
+      <SEO
+        title="Biblioteca"
+        description="Encuentra libros en la biblioteca de Kribí. Libros en Palenquero y Espanol con diversidad de temas gastronomicos, historicos, filosoficos, entre otros."
+      />
       <Stack direction='column' spacing={2} alignItems='center' justifyContent='center' width='100%' p={1}>
         <FilterSearcher
           bgColor="var(--dark-brown)"
