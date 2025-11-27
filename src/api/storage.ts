@@ -1,7 +1,7 @@
 import { WordDTO } from "../interfaces";
 
 export class Storage {
-  constructor(public store: string) {}
+  constructor(public store: string) { }
 
   save(key: string, data: Array<WordDTO>) {
     localStorage.setItem(`${this.store}/${key}`, JSON.stringify(data))
@@ -10,7 +10,7 @@ export class Storage {
   get(key: string): Array<WordDTO> {
     return JSON.parse(localStorage.getItem(`${this.store}/${key}`) || '{}');
   }
-  
+
   exists(key: string): boolean {
     return !!localStorage.getItem(`${this.store}/${key}`);
   }
@@ -38,14 +38,18 @@ export default class DictionaryStorage {
   }
 
   get letter() {
-    if(this._letter) { return this._letter; }
+    if (this._letter) { return this._letter; }
     this._letter = new LetterStorage();
     return this._letter;
   }
 
   get word() {
-    if(this._word) { return this._word; }
+    if (this._word) { return this._word; }
     this._word = new WordStorage();
     return this._word;
+  }
+
+  cleanStorage() {
+    localStorage.clear();
   }
 }
