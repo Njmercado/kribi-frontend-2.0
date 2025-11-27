@@ -3,7 +3,7 @@
 import './index.css'
 import { Stack, Typography, Grid2, useTheme, useMediaQuery } from '@mui/material'
 import Wave from 'react-wavify';
-import { SectionButton } from '../../components/atoms';
+import { SectionButton, SEO } from '../../components/atoms';
 import { SECTIONS } from '../../constants/sections.constant';
 import { ISection } from '../../interfaces';
 
@@ -12,6 +12,10 @@ export default function Home() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <main>
+      <SEO
+        title="Inicio"
+        description="Kribí es una herramienta digital para aprender y divertirse con la cultura Palenquera."
+      />
       <article>
         <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
           <Stack bgcolor='var(--yellow)' paddingTop={20}>

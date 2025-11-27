@@ -3,6 +3,7 @@ import { AVAILABLE_NEWS } from "../../constants";
 import { INews } from "../../interfaces";
 import { NewsSummarize } from "../../components/atoms";
 import { useNavigate } from "react-router-dom";
+import { SEO } from "../../components/atoms";
 
 export default function News() {
 
@@ -14,27 +15,31 @@ export default function News() {
     return AVAILABLE_NEWS_COPY.splice(random, 1)[0]
   }
 
-  function goTo(newsId: number) { navigate(`/noticias/id/${newsId}`)}
+  function goTo(newsId: number) { navigate(`/noticias/id/${newsId}`) }
 
   return (
     <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <SEO
+        title="Noticias"
+        description="Encuentra noticias en Kribí. Noticias sobre la diversidad de nuestro pais y cultura negra."
+      />
       <article style={{ width: '70vw' }}>
         <Grid container direction='row' columns={2}>
           <Grid item sm={1}>
-            <NewsSummarize news={getNews()} onClick={goTo}/>
+            <NewsSummarize news={getNews()} onClick={goTo} />
           </Grid>
           <Grid item sm={1}>
             <Grid container direction='column' columns={2}>
               <Grid item sm={1}>
-                <NewsSummarize news={getNews()} onClick={goTo}/>
+                <NewsSummarize news={getNews()} onClick={goTo} />
               </Grid>
               <Grid item sm={1}>
                 <Grid container direction='row' columns={2}>
                   <Grid item sm={1}>
-                    <NewsSummarize news={getNews()} onClick={goTo}/>
+                    <NewsSummarize news={getNews()} onClick={goTo} />
                   </Grid>
                   <Grid item sm={1}>
-                    <NewsSummarize news={getNews()} onClick={goTo}/>
+                    <NewsSummarize news={getNews()} onClick={goTo} />
                   </Grid>
                 </Grid>
               </Grid>

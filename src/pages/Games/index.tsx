@@ -3,6 +3,7 @@ import { GAMES } from "../../constants";
 import { IGame } from "../../interfaces";
 import { useEffect, useState } from "react";
 import { BuildWordsGame, FlipCardGame } from "../../components/organisms";
+import { SEO } from "../../components/atoms";
 import { CardGameTemplate } from "../../components/molecules";
 
 export default function Games() {
@@ -40,6 +41,10 @@ export default function Games() {
 
   return (
     <main>
+      <SEO
+        title="Juegos"
+        description="Diviértete y aprende con los juegos de Kribí: Memoria Palenquera."
+      />
       <Dialog open={open} onClose={handleOnCloseDialog} maxWidth='lg' fullWidth={!smallScreen} fullScreen={smallScreen}>
         <Stack direction='row' spacing={2} justifyContent='space-between' sx={{ p: 1, backgroundColor: 'var(--yellow)' }}>
           <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'var(--brown)' }}>{getGameName(game)}</Typography>
