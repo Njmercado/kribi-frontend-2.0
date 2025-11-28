@@ -12,6 +12,7 @@ import CardGameTemplate from './CardGameTemplate';
 import Donation from './Donation';
 import DrawerHeader from './DrawerHeader';
 import NavigationHeader from './NavigationHeader';
+import NewsCard from './NewsCard';
 
 export {
   Header,
@@ -27,5 +28,6 @@ export {
   CardGameTemplate,
   Donation,
   DrawerHeader,
-  NavigationHeader
+  NavigationHeader,
+  NewsCard
 }
