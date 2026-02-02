@@ -112,6 +112,8 @@ export const LINKS_INDEX: Record<string, ILink> = {
   SUTO: LINKS_DATA.ABOUT_US,
 }
 
+export const HOME_REGEX_PATHS = /^\/$|\/komensá|\/komensa|\/inicio|\/home$/
+
 export const LINKS: ILink[] = [
   {
     name: 'Komensá',

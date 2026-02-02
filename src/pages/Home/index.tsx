@@ -45,8 +45,10 @@ export default function Home() {
         alt="Logo Kribí"
         sx={{
           objectFit: 'contain', width: '150px',
-          display: { xs: 'none', md: 'block' }
+          display: { xs: 'none', md: 'block' },
+          cursor: 'pointer',
         }}
+        onClick={() => navigate('/')}
       />
       <Box
         sx={{

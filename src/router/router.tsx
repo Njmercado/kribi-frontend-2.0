@@ -8,7 +8,7 @@ export const ROUTER = createBrowserRouter([
     path: "/",
     element: <RootLayout />,
     children: [
-      ...["/", "/inicio", "/komensa", "/komensá"].map((path: string) => ({
+      ...["/", "/inicio", "/komensa", "/komensá", "/home"].map((path: string) => ({
         path,
         element: <Home />
       })),

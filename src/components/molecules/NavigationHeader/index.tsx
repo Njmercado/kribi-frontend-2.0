@@ -1,9 +1,10 @@
-import { Stack, styled } from "@mui/material";
+import { Box, Stack, styled } from "@mui/material";
 import { useState } from 'react';
 import { ILink } from "../../../interfaces";
 import { HeaderLink } from "../../atoms";
 import { useLocation } from "react-router-dom";
 import { LINKS_INDEX } from "../../../constants";
+import { useNavigate } from "react-router-dom";
 
 const StyledNav = styled('nav')`
   padding: 20px 10px;
@@ -19,6 +20,7 @@ export default function NavigationHeader({
 }: NavigationHeaderProps) {
   const location = useLocation();
   const [clickedLink, setClickedLink] = useState<ILink>(LINKS_INDEX[location.pathname.substring(1).toUpperCase()]);
+  const navigate = useNavigate();
 
   function isActive(link: ILink) {
     return link.name === clickedLink?.name
@@ -40,7 +42,16 @@ export default function NavigationHeader({
   return (
     <StyledNav>
       <Stack direction="row" justifyContent='space-between'>
-        <img src="/images/logo.png" alt="" width='200px' />
+        <Box
+          component="img"
+          src="/images/logo.png"
+          alt="Logo Kribí"
+          sx={{
+            objectFit: 'contain', width: '150px',
+            cursor: 'pointer',
+          }}
+          onClick={() => navigate('/')}
+        />
         <Stack justifyContent='flex-end' gap={2}>
           <Stack direction={"row"} gap={2}>
             {renderLinks()}
