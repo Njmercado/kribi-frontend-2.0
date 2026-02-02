@@ -9,8 +9,6 @@ import {
   Grid2,
   Card,
   CardActionArea,
-  useTheme,
-  useMediaQuery,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -21,8 +19,146 @@ import { LINKS } from '../../constants';
 
 export default function Home() {
   const navigate = useNavigate();
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const leftPanel = () => {
+
+    /**
+     * On small screens the logo is hidden
+     */
+
+    return (<Box
+      sx={{
+        gridArea: 'left-panel',
+        bgcolor: 'var(--yellow)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        position: 'relative',
+        zIndex: 2,
+        p: 4,
+        pt: 2,
+      }}
+    >
+      <Box
+        component="img"
+        src="/images/logo_v2.png"
+        alt="Logo Kribí"
+        sx={{
+          objectFit: 'contain', width: '150px',
+          display: { xs: 'none', md: 'block' }
+        }}
+      />
+      <Box
+        sx={{
+          display: { xs: 'flex', md: 'block' },
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          height: { xs: '100%', md: 'auto' },
+          width: '100%',
+          gap: 2,
+        }}
+      >
+        <Typography variant="h5" fontWeight="bold" color="var(--brown)" sx={{ mb: 2, display: { xs: 'none', md: 'block' } }}>
+          Patrimonio
+        </Typography>
+        <Typography variant="h3" fontWeight="bold" color="var(--brown)" sx={{ mb: 2, display: { md: 'none' } }}>
+          Patrimonio
+        </Typography>
+        <Typography variant="body2" color="var(--brown)" sx={{ opacity: 0.8, mb: 4 }}>
+          Descubre la magia de San Basilio de Palenque, un tesoro cultural de la humanidad.
+        </Typography>
+        <Button
+          variant="text"
+          color="inherit"
+          endIcon={<ArrowForwardIcon />}
+          onClick={() => navigate('/nosotros')}
+          sx={{ p: 0, '&:hover': { bgcolor: 'transparent', textDecoration: 'underline' } }}
+        >
+          Leer más
+        </Button>
+      </Box>
+    </Box>
+    );
+  }
+
+  const rightPanel = () => {
+    return (
+      <Box
+        sx={{
+          gridArea: 'right-panel',
+          bgcolor: 'var(--brown)',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          component="img"
+          src="/images/1.png"
+          alt="Palenque Hero"
+          sx={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4
+          }}
+        />
+
+        <Container sx={{ height: '100%', position: 'relative', zIndex: 2, p: 4, mx: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', gap: 2 }}>
+            {
+              LINKS.map((link, index) => (
+                <HeaderLink key={index} link={link} />
+              ))
+            }
+          </Box>
+          <Box>
+            <Typography
+              variant="overline"
+              sx={{ color: 'var(--yellow)', letterSpacing: 3, fontWeight: 'bold' }}
+            >
+              BIENVENIDOS
+            </Typography>
+            <Typography
+              variant="h1"
+              sx={{
+                color: 'var(--white)',
+                fontWeight: 800,
+                fontSize: { xs: '3rem', md: '5.5rem' },
+                lineHeight: 1.1,
+                fontFamily: 'Outfit, sans-serif',
+                mb: 4
+              }}
+            >
+              Palenque:<br />
+              Patrimonio Vivo
+            </Typography>
+
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => { document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' }) }}
+              sx={{
+                bgcolor: 'var(--white)',
+                color: 'var(--brown)',
+                fontWeight: 'bold',
+                py: 2,
+                px: 4,
+                borderRadius: '10px',
+                fontSize: '1rem',
+                '&:hover': { bgcolor: 'var(--yellow)' }
+              }}
+            >
+              EXPLORAR AHORA
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+    );
+  }
 
   return (
     <main>
@@ -30,125 +166,23 @@ export default function Home() {
         title="Inicio"
         description="Kribí es una herramienta digital para aprender y divertirse con la cultura Palenquera."
       />
-
-      {/* Hero Section - Split Layout */}
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, minHeight: '100vh', position: 'relative' }}>
-
-        {/* Left Panel (Yellow) */}
-        <Box
-          sx={{
-            width: { xs: '100%', md: '25%' },
-            bgcolor: 'var(--yellow)',
-            p: 4,
-            pt: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            position: 'relative',
-            zIndex: 2
-          }}
-        >
-          <Box
-            component="img"
-            src="/images/logo_v2.png"
-            alt="Logo Kribí"
-            sx={{ objectFit: 'contain', width: '150px' }}
-          />
-          <Box>
-
-            <Typography variant="h5" fontWeight="bold" color="var(--brown)" sx={{ mb: 2 }}>
-              Patrimonio
-            </Typography>
-            <Typography variant="body2" color="var(--brown)" sx={{ opacity: 0.8, mb: 4 }}>
-              Descubre la magia de San Basilio de Palenque, un tesoro cultural de la humanidad.
-            </Typography>
-            <Button
-              variant="text"
-              color="inherit"
-              endIcon={<ArrowForwardIcon />}
-              onClick={() => navigate('/nosotros')}
-              sx={{ p: 0, '&:hover': { bgcolor: 'transparent', textDecoration: 'underline', textAlign: 'right' } }}
-            >
-              Leer más
-            </Button>
-          </Box>
-        </Box>
-
-        {/* Right Panel (Dark Brown) */}
-        <Box
-          sx={{
-            width: { xs: '100%', md: '75%' },
-            bgcolor: 'var(--brown)',
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            overflow: 'hidden'
-          }}
-        >
-          {/* Background Image with Overlay */}
-          <Box
-            component="img"
-            src="/images/1.png"
-            alt="Palenque Hero"
-            sx={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              opacity: 0.4
-            }}
-          />
-
-          <Container sx={{ height: '100%', position: 'relative', zIndex: 2, p: 4, mx: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
-              {
-                LINKS.map((link, index) => (
-                  <HeaderLink key={index} link={link} />
-                ))
-              }
-            </Box>
-            <Box>
-              <Typography
-                variant="overline"
-                sx={{ color: 'var(--yellow)', letterSpacing: 3, fontWeight: 'bold' }}
-              >
-                BIENVENIDOS
-              </Typography>
-              <Typography
-                variant="h1"
-                sx={{
-                  color: 'var(--white)',
-                  fontWeight: 800,
-                  fontSize: { xs: '3rem', md: '5.5rem' },
-                  lineHeight: 1.1,
-                  fontFamily: 'Outfit, sans-serif',
-                  mb: 4
-                }}
-              >
-                Palenque:<br />
-                Patrimonio Vivo
-              </Typography>
-
-              <Button
-                variant="contained"
-                size="large"
-                onClick={() => { document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' }) }}
-                sx={{
-                  bgcolor: 'var(--white)',
-                  color: 'var(--brown)',
-                  fontWeight: 'bold',
-                  py: 2,
-                  px: 4,
-                  borderRadius: '10px',
-                  fontSize: '1rem',
-                  '&:hover': { bgcolor: 'var(--yellow)' }
-                }}
-              >
-                EXPLORAR AHORA
-              </Button>
-            </Box>
-          </Container>
-        </Box>
+      <Box
+        sx={{
+          display: 'grid',
+          height: '100vh',
+          gridTemplateAreas: {
+            xs: `"right-panel"
+                  "left-panel"`,
+            md: `"left-panel right-panel"`
+          },
+          gridTemplateColumns: {
+            xs: '1fr',
+            md: '1fr 3fr'
+          },
+        }}
+      >
+        {leftPanel()}
+        {rightPanel()}
       </Box>
 
       {/* Mission Section (White) */}
@@ -188,7 +222,7 @@ export default function Home() {
                 position: { xs: 'relative', md: 'absolute' },
                 bottom: { xs: 0, md: -40 },
                 right: { xs: 0, md: 40 },
-                width: { xs: '100%', md: '400px' },
+                width: { md: '400px' },
                 bgcolor: 'var(--white)',
                 p: 4,
                 mt: { xs: -4, md: 0 },
@@ -200,7 +234,7 @@ export default function Home() {
               <Typography variant="h5" fontWeight="bold" sx={{ color: 'var(--brown)', mb: 2 }}>
                 Más que una herramienta
               </Typography>
-              <Typography color="text.secondary" paragraph>
+              <Typography variant="body2">
                 Kribí conecta con las raíces de San Basilio de Palenque, eliminando barreras y preservando nuestra historia a través de la tecnología.
               </Typography>
               <Button
@@ -214,20 +248,20 @@ export default function Home() {
           </Box>
 
           {/* Stats / Numbers (Optional Reference Match) */}
-          <Grid2 container spacing={4} justifyContent="center" sx={{ textAlign: 'center', py: 8, borderTop: '1px solid #eee', borderBottom: '1px solid #eee' }}>
-            <Grid2 size={{ xs: 12, md: 4 }}>
+          <Grid2 container spacing={4} justifyContent="center" sx={{ textAlign: 'center', py: 8, borderTop: '1px solid var(--brown)' }}>
+            <Grid2 size={{ xs: 12, md: 3 }}>
               <Typography variant="h3" fontWeight="bold" color="var(--brown)">1er</Typography>
               <Typography variant="body2" color="text.secondary">Diccionario Palenquero-Español Digital</Typography>
             </Grid2>
-            <Grid2 size={{ xs: 12, md: 4 }}>
+            <Grid2 size={{ xs: 12, md: 3 }}>
               <Typography variant="h3" fontWeight="bold" color="var(--brown)">300+</Typography>
               <Typography variant="body2" color="text.secondary">Años de Historia</Typography>
             </Grid2>
-            <Grid2 size={{ xs: 12, md: 4 }}>
+            <Grid2 size={{ xs: 12, md: 3 }}>
               <Typography variant="h3" fontWeight="bold" color="var(--brown)">1ra</Typography>
               <Typography variant="body2" color="text.secondary">Lengua Criolla en América</Typography>
             </Grid2>
-            <Grid2 size={{ xs: 12, md: 4 }}>
+            <Grid2 size={{ xs: 12, md: 3 }}>
               <Typography variant="h3" fontWeight="bold" color="var(--brown)">100%</Typography>
               <Typography variant="body2" color="text.secondary">Identidad Cultural</Typography>
             </Grid2>

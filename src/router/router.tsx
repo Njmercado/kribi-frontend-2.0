@@ -6,45 +6,45 @@ import { NewsInformation } from "../components/molecules"
 export const ROUTER = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout/>,
+    element: <RootLayout />,
     children: [
-      {
-        path: "/",
-        element: <Home/>
-      },
+      ...["/", "/inicio", "/komensa", "/komensá"].map((path: string) => ({
+        path,
+        element: <Home />
+      })),
       ...["/diccionario", "/kajangari"].map((path: string) => ({
         path,
-        element: <Dictionary/>
+        element: <Dictionary />
       })),
       ...["/libreria", "/yurumbi"].map((path: string) => ({
         path,
-        element: <Library/>
+        element: <Library />
       })),
       ...["/juegos", "/arrelike", "/actividades"].map((path: string) => ({
         path,
-        element: <Games/>
+        element: <Games />
       })),
       ...["/noticias", "/chakero", "/noticia"].map((path: string) => ({
         path,
-        element: <Outlet/>,
+        element: <Outlet />,
         children: [
           {
             path: `${path}/`,
-            element: <News/>
+            element: <News />
           },
           {
             path: `${path}/:label`,
-            element: <NewsInformation/>
+            element: <NewsInformation />
           },
           {
             path: `${path}/id/:id`,
-            element: <NewsInformation/>
+            element: <NewsInformation />
           }
         ]
       })),
       ...["/nosotros", "/suto"].map((path: string) => ({
         path,
-        element: <AboutUs/>
+        element: <AboutUs />
       }))
     ]
   }

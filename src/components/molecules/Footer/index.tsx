@@ -1,5 +1,5 @@
 import { Facebook, GitHub, Instagram } from "@mui/icons-material";
-import { Box, Grid2, Stack, Typography, Container, Button, IconButton, Grid } from "@mui/material";
+import { Box, Grid2, Stack, Typography, Container, Button, IconButton } from "@mui/material";
 import { goToFacebook, goToGithub, goToInstagram } from "../../../utils/general.utils";
 import { useNavigate } from "react-router-dom";
 
@@ -10,11 +10,10 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: 'var(--dark-brown)', color: 'var(--white)' }}>
 
-      {/* Footer / CTA Section (Yellow Box Style) */}
       <Box sx={{ pb: 8, pt: 8 }}>
         <Container>
-          <Grid2 container>
-            <Grid2 size={{ xs: 12, md: 4 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Grid2 container spacing={4}>
+            <Grid2 size={{ xs: 12, md: 4 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: { xs: 'center', md: 'start' } }}>
               <img src="/images/logo_v2.png" alt="logo kribi" width='200px' style={{ maxWidth: '100%', height: 'auto' }} />
 
               <Stack direction={"row"} gap={2} pt={2}>
@@ -25,12 +24,13 @@ export default function Footer() {
 
             <Grid2 size={{ xs: 12, md: 4 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <Typography variant="h4">Explora</Typography>
-              <Stack spacing={1} mt={2}>
-                {['Inicio', 'Nosotros', 'Noticias', 'Contacto'].map((text) => (
+              <Stack mt={2} sx={{ flexDirection: { xs: 'row', md: 'column' }, display: 'flex', gap: 2 }}>
+                {['Inicio', 'Nosotros', 'Noticias', 'Actividades', 'Libreria'].map((text) => (
                   <Typography
                     key={text}
                     color="white"
-                    sx={{ cursor: 'pointer', '&:hover': { color: 'var(--yellow)' } }}
+                    sx={{ cursor: 'pointer', '&:hover': { color: 'var(--yellow)' }, }}
+                    onClick={() => navigate('/' + text.toLowerCase())}
                   >
                     {text}
                   </Typography>
