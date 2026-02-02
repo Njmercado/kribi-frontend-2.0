@@ -1,4 +1,4 @@
-const LETTERS = [
+export const LETTERS = [
 	'A',
 	'B',
 	'CH',
@@ -21,5 +21,3 @@ const LETTERS = [
 	'U',
 	'Y'
 ]
-
-export default LETTERS

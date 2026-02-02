@@ -1,7 +1,7 @@
 import { INews } from '../interfaces'
 import { WATER_NEWS, YOUNG_VISION_2020, A_SCIENTIFIC_MINISTER, THE_CHAMPETA_OUR_REUNION_WITH_AFRICA } from './news'
 
-const AVAILABLE_NEWS: INews[] = [
+export const AVAILABLE_NEWS: INews[] = [
   {
     name: 'Cuando el agua no es bendición',
     id: 1,
@@ -50,5 +50,3 @@ creación del Ministerio de Ciencia, Tecnología e Innovación, por medio de la 
 2019.`,
   },
 ]
-
-export default AVAILABLE_NEWS

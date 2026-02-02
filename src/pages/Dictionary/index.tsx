@@ -88,7 +88,17 @@ export default function Dictionary() {
 				description="Encuentra palabras en el diccionario de Kribí. Palabras en palenquero, definición y traducción."
 			/>
 			<Stack direction='column' alignItems='center' gap={2}>
-				<img className='dictionary-icon' src="/images/icono-diccionario.png" alt="icono diccionario" width='10%' />
+				<Box
+					component="img"
+					src="/images/icono-diccionario.png"
+					alt="Logo Diccionario Kribí"
+					sx={{
+						objectFit: 'contain', width: '150px',
+						backgroundColor: 'var(--dark-brown)',
+						borderRadius: '10px',
+						padding: '5px',
+					}}
+				/>
 				<BaseSearcher
 					placeholder='Busca una o mas palabras'
 					onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setWord(event.target.value)}

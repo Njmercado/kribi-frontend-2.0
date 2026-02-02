@@ -5,6 +5,7 @@ import { styled, SwipeableDrawer, Typography, Stack, IconButton, Box } from "@mu
 import Grid from "@mui/material/Grid2";
 import { Menu } from '@mui/icons-material';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const StyledNav = styled('nav')`
   padding: 20px 10px;
@@ -21,6 +22,7 @@ export default function DrawerHeader({
 
   const [open, setOpen] = useState<boolean>(false);
   const [clickedLink, setClickedLink] = useState<string>(window.location.pathname)
+  const navigate = useNavigate();
 
   function onClickLink(link: string) {
     setClickedLink(link)
@@ -29,7 +31,16 @@ export default function DrawerHeader({
 
   function renderLinks() {
     return <Box bgcolor='var(--dark-brown)' padding='20px 10px'>
-      <img src="/images/logo.png" alt="" width='200px' />
+      <Box
+        component="img"
+        src="/images/logo.png"
+        alt="Logo Kribí"
+        sx={{
+          objectFit: 'contain', width: '150px',
+          cursor: 'pointer',
+        }}
+        onClick={() => navigate('/')}
+      />
       <Grid
         container
         padding='32px'
@@ -40,8 +51,8 @@ export default function DrawerHeader({
       >
         {
           links.map((link, index) =>
-            <Grid size="auto">
-              <Link key={index} to={link.link ?? '/'} onClick={() => onClickLink(link.name)}>
+            <Grid key={index} size="auto">
+              <Link to={link.link ?? '/'} onClick={() => onClickLink(link.name)}>
                 <Typography
                   variant='subtitle1'
                   fontWeight='600'
