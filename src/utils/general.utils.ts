@@ -1,5 +1,5 @@
 import { SocialMedias } from "../enums"
-import { SCREENS } from "../constants"
+import SCREENS from "../constants/screens"
 
 function goTo(link: string) { window.open(link, '_blank') }
 function goToFacebook() { goTo(SocialMedias.FACEBOOK) }

@@ -3,6 +3,7 @@ import { IGame } from './game.interface'
 import { INews } from './news.interface'
 import { IWord } from './word.interface'
 import { ISection } from './section.interface'
+import { ILink } from './general.interface'
 
 import { WordDTO } from './word.dto.interface'
 
@@ -13,5 +14,6 @@ export type {
     INews,
     IWord,
     WordDTO,
-    ISection
+    ISection,
+    ILink
 }

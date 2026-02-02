@@ -3,4 +3,5 @@ export interface ISection {
   link: string
   title: string
   color?: string
+  description?: string
 }

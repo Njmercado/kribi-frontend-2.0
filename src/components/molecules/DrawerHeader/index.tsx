@@ -40,8 +40,8 @@ export default function DrawerHeader({
       >
         {
           links.map((link, index) =>
-            <Grid size="auto">
-              <Link key={index} to={link.link ?? '/'} onClick={() => onClickLink(link.name)}>
+            <Grid key={index} size="auto">
+              <Link to={link.link ?? '/'} onClick={() => onClickLink(link.name)}>
                 <Typography
                   variant='subtitle1'
                   fontWeight='600'

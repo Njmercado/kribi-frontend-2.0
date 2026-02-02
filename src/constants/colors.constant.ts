@@ -1,4 +1,4 @@
-const COLORS = [
+export const COLORS = [
   'pink',
   'red',
   'purple',
@@ -12,5 +12,3 @@ const COLORS = [
   'darkgreen',
   'green',
 ]
-
-export default COLORS;

@@ -10,6 +10,7 @@ import Vaki from './Vaki';
 import FloatingButton from './FloatingButton';
 import Button from './Button';
 import SEO from './SEO';
+import HeaderLink from './HeaderLink';
 
 export {
   Letter,
@@ -23,5 +24,6 @@ export {
   Vaki,
   FloatingButton,
   Button,
-  SEO
+  SEO,
+  HeaderLink
 }

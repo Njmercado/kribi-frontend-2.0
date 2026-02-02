@@ -168,5 +168,3 @@ export const BOOKS: Array<IBook> = [
     type: BookCategoryEnum.GASTRONOMIA
   }
 ]
-
-export default BOOKS;

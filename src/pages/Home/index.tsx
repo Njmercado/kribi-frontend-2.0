@@ -1,91 +1,317 @@
 'use client';
 
 import './index.css'
-import { Stack, Typography, Grid2, useTheme, useMediaQuery } from '@mui/material'
-import Wave from 'react-wavify';
-import { SectionButton, SEO } from '../../components/atoms';
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid2,
+  Card,
+  CardActionArea,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { SEO } from '../../components/atoms';
 import { SECTIONS } from '../../constants/sections.constant';
-import { ISection } from '../../interfaces';
+import { HeaderLink } from '../../components/atoms';
+import { LINKS } from '../../constants';
 
 export default function Home() {
+  const navigate = useNavigate();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <main>
       <SEO
         title="Inicio"
         description="Kribí es una herramienta digital para aprender y divertirse con la cultura Palenquera."
       />
-      <article>
-        <section style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-          <Stack bgcolor='var(--yellow)' paddingTop={20}>
-            <Stack direction={{ xs: 'column-reverse', md: 'row' }} justifyContent='center' alignItems='center' gap={5} p={2}>
-              <Stack direction={'column'} height={{ xs: 'auto', md: '50vh' }} justifyContent={'center'} textAlign={{ xs: 'center', md: 'left' }}>
-                <Typography variant={'h1'} fontWeight={'bold'} fontSize={{ xs: '2.5rem', md: '3.2em' }}>Palenque</Typography>
-                <Typography variant='h3' fontSize={{ xs: '1.5rem', md: '3rem' }}>A un click</Typography>
-              </Stack>
-              <img
-                src="/images/1.png"
-                alt="Nino palenque sonriente mirando por la ventana de su casa"
-                style={{ borderRadius: '10px', maxWidth: '100%', height: 'auto' }}
-                width={isSmallScreen ? '100%' : '50%'}
-              />
-            </Stack>
-            <Wave
-              style={{ display: 'flex', marginTop: '10vh' }}
-              fill='#fff6de'
-              paused={false}
-              options={{
-                amplitude: 40,
-                speed: 0.2,
-                points: 3
-              }}
-            />
-          </Stack>
-          <Stack paddingTop={10}>
-            <Stack direction={{ xs: 'column', md: 'row' }} justifyContent='center' alignItems='center' gap={5} p={2}>
-              <img
-                src="/images/2.png"
-                alt="Nino palenque serio mirando por la puerta de su casa"
-                style={{ borderRadius: '10px', maxWidth: '100%', height: 'auto' }}
-                width={isSmallScreen ? '100%' : '50%'}
-              />
-              <Typography variant='h5' fontWeight='500' sx={{ wordWrap: 'break-word', maxWidth: { xs: '100%', md: '40ch' }, textAlign: { xs: 'center', md: 'left' } }}>
-                Kribí como herramienta digital es una solución interactiva y divertida;
-                permite llegar a diferentes lugares que cuenten con acceso a internet,
-                evitando que los usuarios tengan que trasladarse. También reduce valores
-                negativos ambientales que se dan para acceder a escenarios de aprendizaje tradicional.
-              </Typography>
-            </Stack>
-            <Wave
-              style={{ display: 'flex', marginTop: '11vh' }}
-              fill='rgb(83, 34, 12)'
-              paused={false}
-              options={{
-                amplitude: 40,
-                speed: 0.2,
-                points: 3
-              }}
-            />
-          </Stack>
-          <Stack direction={{ xs: 'column', md: 'row' }} sx={{ backgroundColor: 'var(--brown)' }} alignItems='center' p={2} gap={2}>
-            <Typography variant='h3' fontWeight='bold' color='var(--white)' fontSize={{ xs: '2rem', md: '3rem' }}>
-              ¡CONOCE, APRENDE Y DIVIÉRTETE!
+
+      {/* Hero Section - Split Layout */}
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, minHeight: '100vh', position: 'relative' }}>
+
+        {/* Left Panel (Yellow) */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '25%' },
+            bgcolor: 'var(--yellow)',
+            p: 4,
+            pt: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            position: 'relative',
+            zIndex: 2
+          }}
+        >
+          <Box
+            component="img"
+            src="/images/logo_v2.png"
+            alt="Logo Kribí"
+            sx={{ objectFit: 'contain', width: '150px' }}
+          />
+          <Box>
+
+            <Typography variant="h5" fontWeight="bold" color="var(--brown)" sx={{ mb: 2 }}>
+              Patrimonio
             </Typography>
-            <img
-              src="/images/3.png"
-              alt="Niños palenque sonrientes mirando hacia la cámara"
-              style={{ borderRadius: '10px', maxWidth: '100%', height: 'auto' }}
-              width={isSmallScreen ? '100%' : '50%'}
+            <Typography variant="body2" color="var(--brown)" sx={{ opacity: 0.8, mb: 4 }}>
+              Descubre la magia de San Basilio de Palenque, un tesoro cultural de la humanidad.
+            </Typography>
+            <Button
+              variant="text"
+              color="inherit"
+              endIcon={<ArrowForwardIcon />}
+              onClick={() => navigate('/nosotros')}
+              sx={{ p: 0, '&:hover': { bgcolor: 'transparent', textDecoration: 'underline', textAlign: 'right' } }}
+            >
+              Leer más
+            </Button>
+          </Box>
+        </Box>
+
+        {/* Right Panel (Dark Brown) */}
+        <Box
+          sx={{
+            width: { xs: '100%', md: '75%' },
+            bgcolor: 'var(--brown)',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            overflow: 'hidden'
+          }}
+        >
+          {/* Background Image with Overlay */}
+          <Box
+            component="img"
+            src="/images/1.png"
+            alt="Palenque Hero"
+            sx={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.4
+            }}
+          />
+
+          <Container sx={{ height: '100%', position: 'relative', zIndex: 2, p: 4, mx: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+              {
+                LINKS.map((link, index) => (
+                  <HeaderLink key={index} link={link} />
+                ))
+              }
+            </Box>
+            <Box>
+              <Typography
+                variant="overline"
+                sx={{ color: 'var(--yellow)', letterSpacing: 3, fontWeight: 'bold' }}
+              >
+                BIENVENIDOS
+              </Typography>
+              <Typography
+                variant="h1"
+                sx={{
+                  color: 'var(--white)',
+                  fontWeight: 800,
+                  fontSize: { xs: '3rem', md: '5.5rem' },
+                  lineHeight: 1.1,
+                  fontFamily: 'Outfit, sans-serif',
+                  mb: 4
+                }}
+              >
+                Palenque:<br />
+                Patrimonio Vivo
+              </Typography>
+
+              <Button
+                variant="contained"
+                size="large"
+                onClick={() => { document.getElementById('mission-section')?.scrollIntoView({ behavior: 'smooth' }) }}
+                sx={{
+                  bgcolor: 'var(--white)',
+                  color: 'var(--brown)',
+                  fontWeight: 'bold',
+                  py: 2,
+                  px: 4,
+                  borderRadius: '10px',
+                  fontSize: '1rem',
+                  '&:hover': { bgcolor: 'var(--yellow)' }
+                }}
+              >
+                EXPLORAR AHORA
+              </Button>
+            </Box>
+          </Container>
+        </Box>
+      </Box>
+
+      {/* Mission Section (White) */}
+      <Box id="mission-section" sx={{ py: 12, bgcolor: 'var(--white)' }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            align="center"
+            sx={{
+              fontFamily: 'Outfit, sans-serif',
+              fontWeight: 800,
+              color: 'var(--brown)',
+              mb: 8,
+              fontSize: { xs: '2.5rem', md: '3.5rem' }
+            }}
+          >
+            Historias de Resistencia<br />y Cultura
+          </Typography>
+
+          <Box sx={{ position: 'relative', mb: 12 }}>
+            {/* Big Feature Image */}
+            <Box
+              component="img"
+              src="/images/2.png"
+              alt="Niños Palenque"
+              sx={{
+                width: '100%',
+                height: { xs: '300px', md: '500px' },
+                objectFit: 'cover',
+                borderRadius: '4px'
+              }}
             />
-          </Stack>
-          <Stack bgcolor='var(--brown)' pb={10} pt={20}>
-            <Grid2 container direction='row' flexWrap='wrap' justifyContent='space-around' gap={2}>
-              {SECTIONS.map((section: ISection, index: number) => <SectionButton {...section} key={index} />)}
+
+            {/* Floating Info Card overlapping image */}
+            <Box
+              sx={{
+                position: { xs: 'relative', md: 'absolute' },
+                bottom: { xs: 0, md: -40 },
+                right: { xs: 0, md: 40 },
+                width: { xs: '100%', md: '400px' },
+                bgcolor: 'var(--white)',
+                p: 4,
+                mt: { xs: -4, md: 0 },
+                mx: { xs: 2, md: 0 },
+                boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+                borderRadius: '4px'
+              }}
+            >
+              <Typography variant="h5" fontWeight="bold" sx={{ color: 'var(--brown)', mb: 2 }}>
+                Más que una herramienta
+              </Typography>
+              <Typography color="text.secondary" paragraph>
+                Kribí conecta con las raíces de San Basilio de Palenque, eliminando barreras y preservando nuestra historia a través de la tecnología.
+              </Typography>
+              <Button
+                endIcon={<ArrowForwardIcon />}
+                sx={{ color: 'var(--brown)', fontWeight: 'bold', p: 0 }}
+                onClick={() => navigate('/nosotros')}
+              >
+                Nuestra Historia
+              </Button>
+            </Box>
+          </Box>
+
+          {/* Stats / Numbers (Optional Reference Match) */}
+          <Grid2 container spacing={4} justifyContent="center" sx={{ textAlign: 'center', py: 8, borderTop: '1px solid #eee', borderBottom: '1px solid #eee' }}>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Typography variant="h3" fontWeight="bold" color="var(--brown)">1er</Typography>
+              <Typography variant="body2" color="text.secondary">Diccionario Palenquero-Español Digital</Typography>
             </Grid2>
-          </Stack>
-        </section>
-      </article>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Typography variant="h3" fontWeight="bold" color="var(--brown)">300+</Typography>
+              <Typography variant="body2" color="text.secondary">Años de Historia</Typography>
+            </Grid2>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Typography variant="h3" fontWeight="bold" color="var(--brown)">1ra</Typography>
+              <Typography variant="body2" color="text.secondary">Lengua Criolla en América</Typography>
+            </Grid2>
+            <Grid2 size={{ xs: 12, md: 4 }}>
+              <Typography variant="h3" fontWeight="bold" color="var(--brown)">100%</Typography>
+              <Typography variant="body2" color="text.secondary">Identidad Cultural</Typography>
+            </Grid2>
+          </Grid2>
+        </Container>
+      </Box>
+
+      <Box sx={{ py: 12, bgcolor: 'var(--brown)' }}>
+        <Container>
+          <Typography
+            variant="h3"
+            sx={{
+              color: 'white',
+              fontFamily: 'Outfit, sans-serif',
+              fontWeight: 800,
+              mb: 6,
+              textAlign: 'center'
+            }}
+          >
+            Explora Nuestro Mundo
+          </Typography>
+
+          <Grid2 container spacing={4}>
+            {SECTIONS.map((section, index) => (
+              <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    bgcolor: 'transparent',
+                    color: 'white',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '10px',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      bgcolor: 'rgba(255,255,255,0.05)',
+                      borderColor: 'var(--yellow)',
+                      transform: 'translateY(-5px)'
+                    }
+                  }}
+                >
+                  <CardActionArea sx={{ height: '100%', p: 3, cursor: 'default' }}>
+                    <Box
+                      component="img"
+                      src={section.image}
+                      sx={{
+                        width: '100%',
+                        height: '200px',
+                        objectFit: 'contain',
+                        mb: 3,
+                        // Add a white filter or keep styling consistent
+                      }}
+                    />
+                    <Typography variant="h5" fontWeight="bold" gutterBottom fontFamily="Outfit, sans-serif">
+                      {section.title}
+                    </Typography>
+                    <Typography variant="body2" sx={{ opacity: 0.7, mb: 2 }}>
+                      {section.description}
+                    </Typography>
+                    <Box
+                      onClick={() => navigate(section.link)}
+                      sx={{
+                        bgcolor: 'var(--yellow)',
+                        color: 'var(--brown)',
+                        fontWeight: 'bold',
+                        mt: 2,
+                        p: 2,
+                        borderRadius: '5px',
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        '&:hover': {
+                          translate: '0 -5px',
+                          transition: 'translate 0.3s ease-in-out',
+                        }
+                      }}
+                    >
+                      Ver Sección
+                    </Box>
+                  </CardActionArea>
+                </Card>
+              </Grid2>
+            ))}
+          </Grid2>
+        </Container>
+      </Box>
     </main>
   )
 }

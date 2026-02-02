@@ -1,10 +1,9 @@
-import './index.css'
-
-import { IconButton, Stack, styled, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Stack, styled } from "@mui/material";
 import { useState } from 'react';
-import { Facebook, Instagram } from '@mui/icons-material';
-import { goToFacebook, goToInstagram } from '../../../utils/general.utils';
+import { ILink } from "../../../interfaces";
+import { HeaderLink } from "../../atoms";
+import { useLocation } from "react-router-dom";
+import { LINKS_INDEX } from "../../../constants";
 
 const StyledNav = styled('nav')`
   padding: 20px 10px;
@@ -12,37 +11,28 @@ const StyledNav = styled('nav')`
 `
 
 export interface NavigationHeaderProps {
-  links?: Array<{name: string, link?: string}>
+  links: Array<ILink>
 }
 
 export default function NavigationHeader({
   links
 }: NavigationHeaderProps) {
+  const location = useLocation();
+  const [clickedLink, setClickedLink] = useState<ILink>(LINKS_INDEX[location.pathname.substring(1).toUpperCase()]);
 
-  const [clickedLink, setClickedLink] = useState<string>(window.location.pathname)
+  function isActive(link: ILink) {
+    return link.name === clickedLink?.name
+  }
 
   function renderLinks() {
     return links?.map((link, index) => {
       return (
-        <Link key={index} to={link.link ?? '/'} onClick={() => setClickedLink(link.name)}>
-          <Typography
-            variant='subtitle1'
-            fontWeight='600'
-            className={
-              'link-header-button ' +
-              (
-                (
-                  clickedLink === link.name ||
-                  clickedLink === link.link
-                )?
-                  'active': 
-                  ''
-              )
-            }
-          >
-              {link.name}
-            </Typography>
-        </Link>
+        <HeaderLink
+          key={index}
+          link={link}
+          active={isActive(link)}
+          onClick={() => setClickedLink(link)}
+        />
       )
     })
   }
@@ -50,16 +40,9 @@ export default function NavigationHeader({
   return (
     <StyledNav>
       <Stack direction="row" justifyContent='space-between'>
-        <img src="/images/logo.png" alt="" width='200px'/>
-        <Stack alignItems='flex-end' gap={2}>
-          <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack direction={"row"} alignItems='center' spacing={2} color='var(--white)'>
-              <Typography variant='h6'>Siguenos</Typography>
-              <IconButton color='inherit' onClick={goToFacebook}> <Facebook/> </IconButton>
-              <IconButton color='inherit' onClick={goToInstagram}> <Instagram/> </IconButton>
-            </Stack>
-          </Stack>
-          <Stack direction={"row"} gap={2} justifyContent={"flex-end"}>
+        <img src="/images/logo.png" alt="" width='200px' />
+        <Stack justifyContent='flex-end' gap={2}>
+          <Stack direction={"row"} gap={2}>
             {renderLinks()}
           </Stack>
         </Stack>
