@@ -2,7 +2,7 @@ import { WordDTO } from '../interfaces';
 import { ENDPOINTS } from '../enums';
 import DictionaryStorage from './storage';
 
-const SERVER_NAME = import.meta.env.VITE_SERVER_URL
+const SERVER_NAME = import.meta.env.VITE_DEV_SERVER_URL
 
 const storage = new DictionaryStorage()
 
@@ -56,10 +56,9 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
     const data = await request.json()
 
-
     if (request.status === 200) {
-      storage.word.save(words, data)
-      return data
+      storage.word.save(words, data.words)
+      return data.words
     }
   } catch (error) {
     console.error("ERROR: ", error)
