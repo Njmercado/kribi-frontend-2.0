@@ -56,10 +56,9 @@ async function searchWord(words: string): Promise<Array<WordDTO>> {
 
     const data = await request.json()
 
-
     if (request.status === 200) {
-      storage.word.save(words, data)
-      return data
+      storage.word.save(words, data.words)
+      return data.words
     }
   } catch (error) {
     console.error("ERROR: ", error)
