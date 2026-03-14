@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Header, Footer } from "../components/molecules"
 import "./root.layout.css"
 import { styled } from "@mui/material";
+import { StoreProvider } from "../libs";
 
 const Body = styled('section')`
   min-height: 100vh;
@@ -11,14 +12,16 @@ const Body = styled('section')`
 
 export default function RootLayout() {
   return (
-    <main>
-      <article>
-        <Header />
-        <Body>
-          <Outlet />
-        </Body>
-        <Footer />
-      </article>
-    </main>
+    <StoreProvider>
+      <main>
+        <article>
+          <Header />
+          <Body>
+            <Outlet />
+          </Body>
+          <Footer />
+        </article>
+      </main>
+    </StoreProvider>
   )
 }

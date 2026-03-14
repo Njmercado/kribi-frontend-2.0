@@ -1,10 +1,10 @@
 import './index.css'
 import { useEffect, useState } from 'react'
 import { Button, Stack, Typography, Box, Grid2 } from "@mui/material";
-import { getRandomWords } from "../../../api/index";
 import { IWord } from '../../../interfaces';
 import LoopIcon from '@mui/icons-material/Loop';
 import CardComponent from './Card';
+import { useLazyGetRandomWordsQuery } from '../../../libs/store/kribiStore/words.api';
 
 interface CardData {
   id: number;
@@ -26,21 +26,21 @@ export default function FlipCardGame() {
   const [cards, setCards] = useState<CardData[]>([]);
   const [flippedCardIds, setFlippedCardIds] = useState<number[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
   const [attempts, setAttempts] = useState<Array<GameStats>>([]);
   const [showGameWon, setShowGameWon] = useState<boolean>(false);
+
+  const [getRandomWords, { isLoading }] = useLazyGetRandomWordsQuery()
 
   useEffect(() => {
     startNewGame();
   }, []);
 
   async function startNewGame() {
-    setLoading(true);
     setMatchedPairs(0);
     setFlippedCardIds([]);
     setShowGameWon(false);
 
-    const wordsData = await getRandomWords(MATCHED_TARGET);
+    const wordsData = await getRandomWords({ quantity: MATCHED_TARGET }).unwrap()
 
     const gameCards: CardData[] = [];
     wordsData.forEach((wordData: IWord, index: number) => {
@@ -67,7 +67,6 @@ export default function FlipCardGame() {
     // Shuffle cards
     const shuffledCards = gameCards.sort(() => Math.random() - 0.5);
     setCards(shuffledCards);
-    setLoading(false);
     setAttempts([...attempts, { attempt: attempts.length + 1, score: 0 }]);
   }
 
@@ -138,7 +137,7 @@ export default function FlipCardGame() {
     }
   }, [matchedPairs]);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className='loader-container'>
         <LoopIcon className='animation-spin' style={{ fontSize: '100px' }} />

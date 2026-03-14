@@ -1,53 +1,36 @@
 import './index.css'
 
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, CircularProgress } from "@mui/material";
 import { Letters } from "../../components/molecules";
 import { useEffect, useState } from "react";
-import { IWord } from "../../interfaces/word.interface";
-import { searchLetter, searchWord } from "../../api";
+import { WordDTO } from "../../interfaces/word.interface";
 import { ListWords } from "../../components/organisms";
 import { BaseSearcher } from '../../components/atoms';
 import { Button } from '../../components/atoms';
 import { SEO } from '../../components/atoms';
+import { useLazyGetWordsQuery, useGetLetterWordsQuery } from "../../libs/store";
 
 export default function Dictionary() {
 
 	const [letter, setLetter] = useState<string>('')
 	const [word, setWord] = useState<string>('')
 	const [page, setPage] = useState<number>(1)
-	const [wordsResult, setWordsResult] = useState<IWord[]>([])
-	const [loading, setLoading] = useState<boolean>(false)
+	const [wordsResult, setWordsResult] = useState<WordDTO[]>([])
 	const [areMoreWords, setAreMoreWords] = useState<boolean>(false)
+
+	const [getWords, { isLoading: wordsLoading }] = useLazyGetWordsQuery()
+	const { data: lettersDataResults, isLoading: lettersLoading } = useGetLetterWordsQuery({ letter, page, limit: 10 }, {
+		skip: shouldSkipLetterQuery(),
+	})
+
+	function shouldSkipLetterQuery() {
+		return (letter.length == 0 && word.length == 0) ||
+			(letter.length > 0 && word.length > 0)
+	}
 
 	function reset() {
 		setWordsResult([])
 		setPage(1)
-	}
-
-	function handleChosenLetter(value: string) {
-		setLetter(value)
-	}
-
-	async function search(searchFunction: () => Promise<IWord[]>): Promise<IWord[]> {
-		setLoading(true)
-		const result = await searchFunction()
-		setLoading(false);
-		return result
-	}
-
-	async function getSearchWordsResult(words: string): Promise<IWord[]> {
-		return search(() => searchWord(words));
-	}
-
-	async function getSearchLetterResult(letterToSearch: string, pageToSearch: number): Promise<IWord[]> {
-		return search(() => searchLetter(letterToSearch, pageToSearch));
-	}
-
-	async function handleWordsResult(words: Promise<IWord[]>) {
-		words.then(newWords => {
-			setWordsResult(oldWords => [...oldWords, ...newWords]);
-			setAreMoreWords(newWords.length > 0);
-		});
 	}
 
 	function handleSearchWords() {
@@ -55,31 +38,20 @@ export default function Dictionary() {
 
 		if (wordHasMoreThanThreeLetters()) {
 			reset()
-			setLetter('')
-			handleWordsResult(getSearchWordsResult(word));
+			getWords(word).unwrap().then((data) => {
+				setWordsResult(data.words)
+			})
 		}
 	}
 
 	useEffect(() => {
-		if (word.length === 0) {
-			reset()
-		}
-	}, [word])
-
-	useEffect(() => {
-
 		const letterIsNotEmpty = () => letter.length > 0;
 
-		if (letterIsNotEmpty()) {
-			reset()
-			handleWordsResult(getSearchLetterResult(letter, 1))
+		if (letterIsNotEmpty() && !lettersLoading && lettersDataResults) {
+			setWordsResult(oldWords => [...oldWords, ...lettersDataResults])
+			setAreMoreWords(lettersDataResults.length > 0);
 		}
-	}, [letter])
-
-	function handleLoadMore() {
-		setPage(page + 1);
-		handleWordsResult(getSearchLetterResult(letter, page + 1));
-	}
+	}, [lettersDataResults, lettersLoading])
 
 	return (
 		<main style={{ position: 'relative', minHeight: '100vh', paddingTop: '5vh', paddingBottom: '5vh' }}>
@@ -101,21 +73,30 @@ export default function Dictionary() {
 				/>
 				<BaseSearcher
 					placeholder='Busca una o mas palabras'
-					onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setWord(event.target.value)}
+					onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+						setWord(event.target.value)
+					}}
 					onSearch={handleSearchWords}
 					bgColor='var(--dark-brown)'
 					color='var(--white)'
 				/>
 			</Stack>
 			<Stack mt={5}>
-				<Letters onClick={handleChosenLetter} />
+				<Letters onClick={(letter: string) => {
+					setLetter(letter)
+					setWord('')
+					reset()
+				}} />
 			</Stack>
 			<Box>
+
+				{wordsLoading || lettersLoading && <CircularProgress />}
+
 				<ListWords searchedWord={word} words={wordsResult} />
 				{
-					areMoreWords && letter.length > 0 &&
+					areMoreWords && letter.length > 0 && word.length == 0 &&
 					<Stack direction='row' justifyContent='center' alignItems='center'>
-						<Button onClick={handleLoadMore} value={loading ? "Cargando..." : "Cargar más palabras"} />
+						<Button onClick={() => setPage(page + 1)} value="Cargar más palabras" />
 					</Stack>
 				}
 			</Box>

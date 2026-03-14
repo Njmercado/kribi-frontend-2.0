@@ -17,7 +17,9 @@ export default function Card({ id, content, isFlipped, isMatched, onClick }: Car
     >
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <Typography variant="h3" sx={{ color: 'var(--white)' }}>?</Typography>
+          <Typography variant="h3" sx={{ color: 'var(--white)' }}>
+            <img src="/images/icono-actividades.png" alt="" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+          </Typography>
         </div>
         <div className="flip-card-back">
           <Typography variant="body1" sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}>

@@ -2,7 +2,7 @@ import { WordDTO } from '../interfaces';
 import { ENDPOINTS } from '../enums';
 import DictionaryStorage from './storage';
 
-const SERVER_NAME = import.meta.env.VITE_SERVER_URL
+const SERVER_NAME = import.meta.env.VITE_DEV_SERVER_URL
 
 const storage = new DictionaryStorage()
 
@@ -42,31 +42,6 @@ async function getRandomWords(quantity: number = 10): Promise<Array<WordDTO>> {
   return [];
 }
 
-async function searchWord(words: string): Promise<Array<WordDTO>> {
-
-  if (words.length < 3) return []
-
-  if (storage.word.exists(words)) return storage.word.get(words);
-
-  try {
-    const request = await fetch(
-      `${SERVER_NAME}${ENDPOINTS.GET_WORDS_BY_WORD}?word=${words}`,
-      { method: 'GET' }
-    )
-
-    const data = await request.json()
-
-    if (request.status === 200) {
-      storage.word.save(words, data.words)
-      return data.words
-    }
-  } catch (error) {
-    console.error("ERROR: ", error)
-  }
-
-  return []
-}
-
 async function searchLetter(letter: string, page: number = 1): Promise<Array<WordDTO>> {
   const KEY = `${letter}/${page}`
   if (letter.length === 0) return []
@@ -93,6 +68,5 @@ async function searchLetter(letter: string, page: number = 1): Promise<Array<Wor
 
 export {
   getRandomWords,
-  searchWord,
   searchLetter
 }
