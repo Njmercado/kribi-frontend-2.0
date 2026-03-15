@@ -11,7 +11,7 @@ export default function Timer({
   onFinish
 }: TimerProps) {
 
-  let interval: number;
+  let interval: NodeJS.Timeout;
   const [timer, setTimer] = useState<number>(100)
 
   function activateTimer() {
@@ -19,9 +19,9 @@ export default function Timer({
       setTimer((value: number) => value - 1)
     }, 1000)
   }
-  
+
   useEffect(() => {
-    if(timer === 0) {
+    if (timer === 0) {
       clearInterval(interval);
       setTimer(100)
       onFinish()
@@ -29,10 +29,10 @@ export default function Timer({
   }, [timer])
 
   useEffect(() => {
-    if(activate) activateTimer()
+    if (activate) activateTimer()
   }, [activate])
 
   return (
-    <LinearProgress value={timer} variant='determinate'/>
+    <LinearProgress value={timer} variant='determinate' />
   )
 }
