@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { AVAILABLE_NEWS } from "../../../constants";
 import Markdown from "react-markdown";
-import { INews } from "../../../interfaces";
 import {
   Box,
   Container,
@@ -12,7 +10,8 @@ import {
   Breadcrumbs,
   Link,
   Paper,
-  Button
+  Button,
+  CircularProgress,
 } from '@mui/material';
 import {
   Pause,
@@ -20,35 +19,28 @@ import {
   Home,
   VolumeUp
 } from '@mui/icons-material';
+import { useGetArticleByIdQuery } from "../../../libs/store";
 
 export default function NewsInformation() {
   const navigate = useNavigate();
   const synth = window.speechSynthesis;
-  const [news, setNews] = useState<INews | undefined>();
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
   const params = useParams();
   const idParam = Number(params.id);
 
-  useEffect(() => {
-    const foundNews = AVAILABLE_NEWS.find(item => item.id === idParam);
-    setNews(foundNews);
-
-    return () => {
-      synth.cancel();
-    };
-  }, [idParam]);
+  const { data: article, isLoading } = useGetArticleByIdQuery(idParam);
 
   useEffect(() => {
     // Reset speech state when news changes
     synth.cancel();
     setIsSpeaking(false);
     setIsPaused(false);
-  }, [news]);
+  }, [article]);
 
   const handleSpeak = () => {
-    if (!news) return;
+    if (!article) return;
 
     if (isSpeaking) {
       if (isPaused) {
@@ -61,14 +53,14 @@ export default function NewsInformation() {
     } else {
       // Strip markdown for speech
       const tmp = document.createElement("DIV");
-      tmp.innerHTML = news.data; // Note: this assumes data is HTML-ish or simple enough. 
+      tmp.innerHTML = article.content; // Note: this assumes data is HTML-ish or simple enough. 
       // Ideally we should strip markdown syntax properly, but for now let's try reading the raw text or a simple strip.
       // Since react-markdown renders it, the source is markdown. 
       // Reading raw markdown is okay-ish but not perfect. 
       // For a better experience, we'd process the markdown to plain text.
       // Let's use the description if available, or just the raw data for now.
 
-      const textToRead = news.data;
+      const textToRead = article.content;
       const utter = new SpeechSynthesisUtterance(textToRead);
 
       utter.onend = () => {
@@ -82,7 +74,15 @@ export default function NewsInformation() {
     }
   };
 
-  if (!news) {
+  if (isLoading) {
+    return (
+      <Box sx={{ py: 8, textAlign: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!article) {
     return (
       <Container sx={{ py: 8, textAlign: 'center' }}>
         <Typography variant="h4">Noticia no encontrada</Typography>
@@ -116,8 +116,8 @@ export default function NewsInformation() {
       >
         <Box
           component="img"
-          src={news.image}
-          alt={news.name}
+          src={article.cover}
+          alt={article.title}
           sx={{
             width: '100%',
             height: '100%',
@@ -162,7 +162,7 @@ export default function NewsInformation() {
             >
               Chakero
             </Link>
-            <Typography sx={{ color: 'white' }}>{news.name}</Typography>
+            <Typography sx={{ color: 'white' }}>{article.title}</Typography>
           </Breadcrumbs>
         </Container>
       </Box>
@@ -208,7 +208,7 @@ export default function NewsInformation() {
               color: 'text.secondary'
             }
           }}>
-            <Markdown>{news.data}</Markdown>
+            <Markdown>{article.content}</Markdown>
           </Box>
         </Paper>
       </Container>

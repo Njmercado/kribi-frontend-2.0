@@ -13,3 +13,4 @@ export type {
 }
 
 export * from './word.interface'
+export * from './article.interface'

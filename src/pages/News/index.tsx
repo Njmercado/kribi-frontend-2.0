@@ -1,19 +1,49 @@
-import { AVAILABLE_NEWS } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { SEO } from "../../components/atoms";
 import { NewsCard } from "../../components/molecules";
-import { Grid2, Typography, Box, Container, Button } from "@mui/material";
+import { Grid2, Typography, Box, Container, Button, CircularProgress } from "@mui/material";
+import { useGetArticlesSynopsisQuery } from "../../libs/store";
 
 export default function News() {
   const navigate = useNavigate();
+  const { data: articles, isLoading } = useGetArticlesSynopsisQuery();
 
   function goTo(newsId: number) {
     navigate(`/chakero/id/${newsId}`);
   }
 
-  // Use the first news item as the hero, and the rest for the grid
-  const mainNews = AVAILABLE_NEWS[0];
-  const otherNews = AVAILABLE_NEWS.slice(1);
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <CircularProgress color="primary" />
+      </Box>
+    );
+  }
+
+  if (!articles || articles.length === 0) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Typography variant="h6">No articles found</Typography>
+      </Box>
+    )
+  }
+
+  const lastArticle = articles[0];
+  const otherArticles = articles.slice(1);
 
   return (
     <main style={{ minHeight: '100vh', paddingBottom: '4rem' }}>
@@ -36,8 +66,8 @@ export default function News() {
       >
         <Box
           component="img"
-          src={mainNews.image}
-          alt={mainNews.name}
+          src={lastArticle.cover}
+          alt={lastArticle.title}
           sx={{
             position: 'absolute',
             width: '100%',
@@ -74,11 +104,11 @@ export default function News() {
               fontSize: 'calc(3vw + 3vh)',
             }}
           >
-            {mainNews.name}
+            {lastArticle.title}
           </Typography>
           <Button
             variant="contained"
-            onClick={() => goTo(mainNews.id)}
+            onClick={() => goTo(lastArticle.id)}
             sx={{
               backgroundColor: 'var(--yellow)',
               color: 'var(--brown)',
@@ -116,9 +146,9 @@ export default function News() {
         </Typography>
 
         <Grid2 container spacing={4}>
-          {otherNews.map((news) => (
-            <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={news.id}>
-              <NewsCard news={news} onClick={goTo} />
+          {otherArticles.map((article) => (
+            <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={article.id}>
+              <NewsCard news={article} onClick={goTo} />
             </Grid2>
           ))}
         </Grid2>

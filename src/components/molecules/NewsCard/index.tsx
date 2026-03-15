@@ -1,9 +1,9 @@
-import { INews } from '../../../interfaces';
+import { IArticleSynopsis } from '../../../interfaces';
 import { Card, CardMedia, CardContent, CardActions, Typography, Button, Box } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface NewsCardProps {
-  news: INews;
+  news: IArticleSynopsis;
   onClick: (id: number) => void;
 }
 
@@ -33,8 +33,8 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
         <CardMedia
           component="img"
           height="220"
-          image={news.image}
-          alt={news.name}
+          image={news.cover || ''}
+          alt={news.title}
           sx={{
             transition: 'transform 0.5s ease',
             objectFit: 'cover'
@@ -59,7 +59,7 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
             lineHeight: 1.3
           }}
         >
-          {news.name}
+          {news.title}
         </Typography>
         <Typography
           variant="body2"
@@ -75,7 +75,7 @@ export default function NewsCard({ news, onClick }: NewsCardProps) {
             maxWidth: '100ch'
           }}
         >
-          {news.description}
+          {news.summary}
         </Typography>
       </CardContent>
       <CardActions sx={{
