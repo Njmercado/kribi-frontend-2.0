@@ -22,7 +22,7 @@ export interface TeamMember {
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Cristina Isabel',
-    lastname: 'de la Hoz Marquez',
+    lastname: 'de la Hoz Márquez',
     role: 'CEO',
     description: {
       short: "Magíster en Educación (Currículo y Evaluación) y Contadora Pública. Investigadora nativa con experiencia docente en bilingüismo en UNINORTE - UNIREFORMADA (2023- 2025), e internacional en Bucknell University (EE. UU.). Autora de A ten mbila (2017), el primer diccionario digital Palenquero-Español. Galardonada por el Ministerio de las Culturas y el Instituto Caro y Cuervo con la Beca de creación de obra inédita 2025, fue reconocida como joven escritora por la Presidencia de la República en Roma (2019). Fundadora de Kribí, transformando la investigación en herramientas digitales de aprendizaje.",
