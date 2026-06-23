@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Markdown from "react-markdown";
 import {
   Box,
   Container,
@@ -20,6 +19,7 @@ import {
   VolumeUp
 } from '@mui/icons-material';
 import { useGetArticleByIdQuery } from "../../../libs/store";
+import { Markdown } from "../../atoms";
 
 export default function NewsInformation() {
   const navigate = useNavigate();
@@ -177,39 +177,8 @@ export default function NewsInformation() {
             bgcolor: 'var(--cream)'
           }}
         >
-          <Box sx={{
-            typography: 'body1',
-            fontFamily: 'Inter, sans-serif',
-            fontSize: '1.1rem',
-            lineHeight: 1.8,
-            color: 'var(--brown)',
-            '& h1, & h2, & h3': {
-              fontFamily: 'Outfit, sans-serif',
-              color: 'var(--brown)',
-              mt: 4,
-              mb: 2
-            },
-            '& p': {
-              mb: 2
-            },
-            '& img': {
-              maxWidth: '100%',
-              height: 'auto',
-              borderRadius: 2,
-              my: 3,
-              display: 'block',
-              mx: 'auto'
-            },
-            '& blockquote': {
-              borderLeft: '4px solid var(--yellow)',
-              pl: 2,
-              fontStyle: 'italic',
-              my: 3,
-              color: 'text.secondary'
-            }
-          }}>
-            <Markdown>{article.content}</Markdown>
-          </Box>
+
+          <Markdown content={article.content} />
         </Paper>
       </Container>
 

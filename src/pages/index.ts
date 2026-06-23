@@ -4,6 +4,7 @@ import Library from "./Library"
 import Games from "./Games"
 import News from "./News"
 import AboutUs from "./AboutUs"
+import AboutProfile from "./AboutProfile"
 
 export {
   Home,
@@ -12,4 +13,5 @@ export {
   Games,
   News,
   AboutUs,
+  AboutProfile
 }

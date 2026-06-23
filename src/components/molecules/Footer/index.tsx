@@ -57,7 +57,7 @@ export default function Footer() {
                 <Button
                   variant="contained"
                   fullWidth
-                  onClick={() => navigate('/contacto')}
+                  onClick={() => window.open('mailto:kribicultura@gmail.com')}
                   sx={{
                     bgcolor: 'var(--brown)',
                     color: 'white',

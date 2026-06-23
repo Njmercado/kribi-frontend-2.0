@@ -12,6 +12,7 @@ import Donation from './Donation';
 import DrawerHeader from './DrawerHeader';
 import NavigationHeader from './NavigationHeader';
 import NewsCard from './NewsCard';
+import TeamMemberCard from './TeamMemberCard';
 
 export {
   Header,
@@ -27,5 +28,6 @@ export {
   Donation,
   DrawerHeader,
   NavigationHeader,
-  NewsCard
+  NewsCard,
+  TeamMemberCard
 }
