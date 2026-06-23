@@ -1,4 +1,5 @@
 import './index.css';
+import { Typography, Stack } from '@mui/material';
 import ABOUT_US from "../../constants/aboutus.constant";
 import { TEAM_MEMBERS } from "../../constants";
 import { SutoSection } from '../../components/molecules';
@@ -9,7 +10,12 @@ export default function AboutUs() {
     <main>
       <article className='container-suto'>
         <section>
-          <TeamSection members={TEAM_MEMBERS} />
+          <Stack mt={5}>
+            <Typography variant="h4" sx={{ textAlign: 'center' }}>
+              Nosotros
+            </Typography>
+            <TeamSection members={TEAM_MEMBERS} />
+          </Stack>
         </section>
         <section>
           {

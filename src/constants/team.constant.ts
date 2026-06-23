@@ -21,29 +21,6 @@ export interface TeamMember {
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: 'Nino Jesus',
-    lastname: 'Mercado Consuegra',
-    role: 'CTO',
-    description: {
-      short: 'Ingeniero de Software e Inteligencia Artificial con más de 5 años de experiencia. Especializado en arquitectura de sistemas, MLOps y diseño interactivo mediante procesos AI DLC. Lidero el desarrollo de la plataforma Kribí, fusionando ingeniería y cultura para la preservación de lenguas nativas como el Palenquero.',
-      long: `
-Soy Ingeniero de Sistemas y Computación con enfoque en Ciencias de la Computación, egresado de la Universidad del Norte, y Especialista en Inteligencia Artificial. A lo largo de mi trayectoria de más de cinco años en el diseño de soluciones tecnológicas y desarrollo de software, me he dedicado a crear herramientas que tiendan puentes entre la innovación técnica y las necesidades sociales. Mi propósito central es poner la tecnología al servicio de la educación y el rescate del patrimonio inmaterial, liderando proyectos que permitan salvaguardar la riqueza lingüística y cultural de nuestras comunidades.
-
-Como director técnico y desarrollador principal de la plataforma educativa Kribí, he asumido el liderazgo de todo su ciclo de vida institucional y digital. En este proyecto, enfocado principalmente en la preservación de la lengua de San Basilio de Palenque, he diseñado tanto la arquitectura del sistema como las interfaces digitales que permiten a usuarios de todo el mundo interactuar con este legado. Mi trabajo integra metodologías modernas de diseño asistido por inteligencia artificial para garantizar que el sistema educativo no solo sea accesible a escala global, sino que resulte intuitivo y respetuoso con la identidad cultural que representa.
-
-Además de mi gestión en proyectos independientes de alto impacto social, cuento con una sólida experiencia en el sector corporativo internacional. Actualmente me desempeño como Ingeniero de Software dentro de una de las organizaciones de tecnología educativa más grandes e influyentes a nivel mundial. En este rol, me encargo de optimizar sistemas de gran escala, garantizar la estabilidad de plataformas utilizadas de forma masiva por millones de estudiantes y profesores, e implementar nuevas herramientas inteligentes aplicadas al aprendizaje digital.
-
-Mi experiencia previa abarca la resolución de problemas complejos en la estructura y organización de bases de datos, la optimización de procesos informáticos y la migración delicada de registros en entornos corporativos exigentes. Asimismo, tengo un fuerte enfoque hacia la orquestación de sistemas autónomos y el procesamiento del lenguaje natural. Mi objetivo principal a corto y mediano plazo es consolidar el desarrollo de un traductor digital para lenguas nativas, permitiendo que comunidades históricas cuenten con herramientas tecnológicas avanzadas para la enseñanza, el mantenimiento y la difusión de su propia herencia cultural.
-      `,
-    },
-    imageUrl: '/images/nino-mercado.jpg',
-    profileUrl: '/nosotros/nino-mercado',
-    social: {
-      instagram: 'https://www.instagram.com/quillero_tech/',
-      linkedin: 'https://www.linkedin.com/in/p64b/'
-    }
-  },
-  {
     name: 'Cristina Isabel',
     lastname: 'de la Hoz Marquez',
     role: 'CEO',
@@ -71,5 +48,28 @@ En 2019, Cristina transformó sus años de datos e investigación comunitaria en
     social: {
       instagram: 'https://www.instagram.com/crisdelahozmar',
     }
-  }
+  },
+  {
+    name: 'Nino Jesus',
+    lastname: 'Mercado Consuegra',
+    role: 'CTO',
+    description: {
+      short: 'Ingeniero de Software e Inteligencia Artificial con más de 5 años de experiencia. Especializado en arquitectura de sistemas, MLOps y diseño interactivo mediante procesos AI DLC. Lidero el desarrollo de la plataforma Kribí, fusionando ingeniería y cultura para la preservación de lenguas nativas como el Palenquero.',
+      long: `
+Soy Ingeniero de Sistemas y Computación con enfoque en Ciencias de la Computación, egresado de la Universidad del Norte, y Especialista en Inteligencia Artificial. A lo largo de mi trayectoria de más de cinco años en el diseño de soluciones tecnológicas y desarrollo de software, me he dedicado a crear herramientas que tiendan puentes entre la innovación técnica y las necesidades sociales. Mi propósito central es poner la tecnología al servicio de la educación y el rescate del patrimonio inmaterial, liderando proyectos que permitan salvaguardar la riqueza lingüística y cultural de nuestras comunidades.
+
+Como director técnico y desarrollador principal de la plataforma educativa Kribí, he asumido el liderazgo de todo su ciclo de vida institucional y digital. En este proyecto, enfocado principalmente en la preservación de la lengua de San Basilio de Palenque, he diseñado tanto la arquitectura del sistema como las interfaces digitales que permiten a usuarios de todo el mundo interactuar con este legado. Mi trabajo integra metodologías modernas de diseño asistido por inteligencia artificial para garantizar que el sistema educativo no solo sea accesible a escala global, sino que resulte intuitivo y respetuoso con la identidad cultural que representa.
+
+Además de mi gestión en proyectos independientes de alto impacto social, cuento con una sólida experiencia en el sector corporativo internacional. Actualmente me desempeño como Ingeniero de Software dentro de una de las organizaciones de tecnología educativa más grandes e influyentes a nivel mundial. En este rol, me encargo de optimizar sistemas de gran escala, garantizar la estabilidad de plataformas utilizadas de forma masiva por millones de estudiantes y profesores, e implementar nuevas herramientas inteligentes aplicadas al aprendizaje digital.
+
+Mi experiencia previa abarca la resolución de problemas complejos en la estructura y organización de bases de datos, la optimización de procesos informáticos y la migración delicada de registros en entornos corporativos exigentes. Asimismo, tengo un fuerte enfoque hacia la orquestación de sistemas autónomos y el procesamiento del lenguaje natural. Mi objetivo principal a corto y mediano plazo es consolidar el desarrollo de un traductor digital para lenguas nativas, permitiendo que comunidades históricas cuenten con herramientas tecnológicas avanzadas para la enseñanza, el mantenimiento y la difusión de su propia herencia cultural.
+      `,
+    },
+    imageUrl: '/images/nino-mercado.jpg',
+    profileUrl: '/nosotros/nino-mercado',
+    social: {
+      instagram: 'https://www.instagram.com/quillero_tech/',
+      linkedin: 'https://www.linkedin.com/in/p64b/'
+    }
+  },
 ];

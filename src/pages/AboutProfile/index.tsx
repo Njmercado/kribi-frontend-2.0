@@ -33,10 +33,6 @@ export default function AboutProfile() {
     );
   }
 
-  const nameParts = member.name.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
-
   return (
     <Box sx={{ minHeight: '100vh', pb: 16, color: 'var(--brown)', pt: 8 }}>
       <Container maxWidth="lg">
@@ -62,7 +58,7 @@ export default function AboutProfile() {
         {/* Hero Text */}
         <Box sx={{ textAlign: 'center', mt: 2 }}>
           <Typography variant="h1" sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '4rem', lg: '8rem' } }}>
-            {firstName} <Box component="span" sx={{ fontStyle: 'italic', fontWeight: 400, fontFamily: 'serif' }}>{lastName}</Box>
+            {member.name} <Box component="span" sx={{ fontStyle: 'italic', fontWeight: 400, fontFamily: 'serif' }}>{member.lastname}</Box>
           </Typography>
           <Typography variant="h4" sx={{ mt: 4, fontWeight: 700, color: 'var(--dark-yellow)' }}>
             {member.role}
