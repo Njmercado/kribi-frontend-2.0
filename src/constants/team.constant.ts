@@ -47,6 +47,7 @@ En 2019, Cristina transformó sus años de datos e investigación comunitaria en
     profileUrl: '/suto/cristina-de-la-hoz',
     social: {
       instagram: 'https://www.instagram.com/crisdelahozmar',
+      linkedin: 'https://www.linkedin.com/in/cristina-isabel-de-la-hoz-m%C3%A1rquez/'
     }
   },
   {
