@@ -5,6 +5,7 @@ export interface Description {
 
 export interface TeamMember {
   name: string;
+  lastname: string;
   role: string;
   description: Description;
   imageUrl: string;
@@ -20,7 +21,8 @@ export interface TeamMember {
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: 'Nino Mercado',
+    name: 'Nino Jesus',
+    lastname: 'Mercado Consuegra',
     role: 'CTO',
     description: {
       short: 'Ingeniero de Software e Inteligencia Artificial con más de 5 años de experiencia. Especializado en arquitectura de sistemas, MLOps y diseño interactivo mediante procesos AI DLC. Lidero el desarrollo de la plataforma Kribí, fusionando ingeniería y cultura para la preservación de lenguas nativas como el Palenquero.',
@@ -43,6 +45,7 @@ Mi experiencia previa abarca la resolución de problemas complejos en la estruct
   },
   {
     name: 'Cristina Isabel',
+    lastname: 'de la Hoz Marquez',
     role: 'CEO',
     description: {
       short: "Magíster en Educación (Currículo y Evaluación) y Contadora Pública. Investigadora nativa con experiencia docente en bilingüismo en UNINORTE - UNIREFORMADA (2023- 2025), e internacional en Bucknell University (EE. UU.). Autora de A ten mbila (2017), el primer diccionario digital Palenquero-Español. Galardonada por el Ministerio de las Culturas y el Instituto Caro y Cuervo con la Beca de creación de obra inédita 2025, fue reconocida como joven escritora por la Presidencia de la República en Roma (2019). Fundadora de Kribí, transformando la investigación en herramientas digitales de aprendizaje.",
@@ -63,8 +66,8 @@ Como gestora apasionada del patrimonio inmaterial, expande la oralitura y la mem
 En 2019, Cristina transformó sus años de datos e investigación comunitaria en un ecosistema socio-técnico de acceso abierto: Kribí (www.kribi.com.co). Como CEO y fundadora, ha estructurado esta ventana virtual de San Basilio de Palenque no solo como un diccionario o repositorio digital, sino como una ludoteca interactiva que procesa contenidos lingüísticos mediante la gamificación. Kribí funciona hoy como una herramienta pedagógica traslacional indispensable que combate el desplazamiento de la lengua, permitiendo a docentes, familias y nuevas generaciones habitar, jugar y aprender el palenquero desde cualquier rincón del mundo.
 `
     },
-    imageUrl: '/images/cristina-de-la-hoz.jpeg',
-    profileUrl: '/suto/cristina-isabel',
+    imageUrl: '/images/cristina-de-la-hoz.jpg',
+    profileUrl: '/suto/cristina-de-la-hoz',
     social: {
       instagram: 'https://www.instagram.com/crisdelahozmar',
     }

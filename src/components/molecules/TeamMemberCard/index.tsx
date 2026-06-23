@@ -2,6 +2,7 @@ import { Card, CardContent, CardMedia, Typography, Link } from '@mui/material';
 
 interface TeamMemberCardProps {
   name: string
+  lastname: string
   description: {
     short: string
   }
@@ -10,18 +11,20 @@ interface TeamMemberCardProps {
   profileUrl: string
 }
 
-export default function TeamMemberCard({ name, description, role, imageUrl, profileUrl }: TeamMemberCardProps) {
+export default function TeamMemberCard({ name, lastname, description, role, imageUrl, profileUrl }: TeamMemberCardProps) {
   return (
     <Card variant='elevation' elevation={2} sx={{ borderRadius: 2 }}>
       <CardMedia
         sx={{ objectFit: 'cover', height: 200 }}
         image={imageUrl}
-        title={name}
+        title={`${name} ${lastname}`}
       />
       <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, bgcolor: 'var(--cream)' }}>
-        <Typography variant='h6' sx={{ fontWeight: 500, color: 'var(--brown)' }}>
-          {name}
-          <span style={{ fontWeight: 'bold' }}> ({role}) </span>
+        <Typography sx={{ fontWeight: 'bolder', color: 'var(--brown)' }}>
+          {role}
+        </Typography>
+        <Typography variant='h6' sx={{ fontWeight: 'bold', color: 'var(--brown)' }}>
+          {`${name} ${lastname}`}
         </Typography>
         <Typography sx={{ color: 'var(--brown)', flexGrow: 1 }}>
           {description.short}
