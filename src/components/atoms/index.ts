@@ -11,6 +11,7 @@ import FloatingButton from './FloatingButton';
 import Button from './Button';
 import SEO from './SEO';
 import HeaderLink from './HeaderLink';
+import Markdown from './Markdown';
 
 export {
   Letter,
@@ -25,5 +26,6 @@ export {
   FloatingButton,
   Button,
   SEO,
-  HeaderLink
+  HeaderLink,
+  Markdown
 }

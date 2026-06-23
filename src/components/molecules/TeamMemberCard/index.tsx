@@ -2,13 +2,15 @@ import { Card, CardContent, CardMedia, Typography, Link } from '@mui/material';
 
 interface TeamMemberCardProps {
   name: string
-  smallDescription: string
+  description: {
+    short: string
+  }
   role: string
   imageUrl: string
   profileUrl: string
 }
 
-export default function TeamMemberCard({ name, smallDescription, role, imageUrl, profileUrl }: TeamMemberCardProps) {
+export default function TeamMemberCard({ name, description, role, imageUrl, profileUrl }: TeamMemberCardProps) {
   return (
     <Card variant='elevation' elevation={2} sx={{ borderRadius: 2 }}>
       <CardMedia
@@ -22,7 +24,7 @@ export default function TeamMemberCard({ name, smallDescription, role, imageUrl,
           <span style={{ fontWeight: 'bold' }}> ({role}) </span>
         </Typography>
         <Typography sx={{ color: 'var(--brown)', flexGrow: 1 }}>
-          {smallDescription}
+          {description.short}
         </Typography>
         <Link
           href={profileUrl}

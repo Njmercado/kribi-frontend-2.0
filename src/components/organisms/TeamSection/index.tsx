@@ -21,7 +21,7 @@ export default function TeamSection({ members }: TeamSectionProps) {
       </Typography>
       <Grid2 container gap={4} justifyContent="center" columns={12}>
         {members.map((member, index) => (
-          <Grid2 size={{ xs: 12, md: 4, lg: 2 }} key={index}>
+          <Grid2 size={{ xs: 8, sm: 6, md: 4, lg: 3 }} key={index}>
             <TeamMemberCard {...member} />
           </Grid2>
         ))}
