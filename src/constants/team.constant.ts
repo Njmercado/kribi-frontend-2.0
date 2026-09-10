@@ -54,7 +54,7 @@ En 2019, Cristina transformó sus años de datos e investigación comunitaria en
   {
     name: 'Nino Jesus',
     lastname: 'Mercado Consuegra',
-    role: 'CTO',
+    role: 'CTO / Director de Tecnología de Kribí',
     description: {
       short: 'Ingeniero de Software e Inteligencia Artificial con más de 5 años de experiencia. Especializado en arquitectura de sistemas, MLOps y diseño interactivo mediante procesos AI DLC. Lidero el desarrollo de la plataforma Kribí, fusionando ingeniería y cultura para la preservación de lenguas nativas como el Palenquero.',
       long: `
