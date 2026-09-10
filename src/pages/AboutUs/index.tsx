@@ -1,5 +1,5 @@
 import './index.css';
-import { Typography, Stack } from '@mui/material';
+import { Typography, Stack, Box } from '@mui/material';
 import ABOUT_US from "../../constants/aboutus.constant";
 import { TEAM_MEMBERS } from "../../constants";
 import { SutoSection } from '../../components/molecules';
@@ -29,6 +29,19 @@ export default function AboutUs() {
               );
             })
           }
+        </section>
+        <section>
+          <Stack mt={10} mb={10} alignItems="center">
+            <Typography variant="h6" sx={{ color: 'var(--brown)', fontWeight: 'bold', mb: 3 }}>
+              Un proyecto nacido desde
+            </Typography>
+            <Box 
+              component="img" 
+              src="/images/fumcat.png" 
+              alt="Fundación María Catalina Luango - FUMCAT" 
+              sx={{ maxWidth: '250px', width: '100%', height: 'auto', objectFit: 'contain' }} 
+            />
+          </Stack>
         </section>
       </article>
     </main>
