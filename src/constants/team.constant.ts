@@ -23,7 +23,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Cristina Isabel',
     lastname: 'de la Hoz Márquez',
-    role: 'CEO',
+    role: 'CEO / Directora ejecutiva de Kribí',
     description: {
       short: "Magíster en Educación (Currículo y Evaluación) y Contadora Pública. Investigadora nativa con experiencia docente en bilingüismo en UNINORTE - UNIREFORMADA (2023- 2025), e internacional en Bucknell University (EE. UU.). Autora de A ten mbila (2017), el primer diccionario digital Palenquero-Español. Galardonada por el Ministerio de las Culturas y el Instituto Caro y Cuervo con la Beca de creación de obra inédita 2025, fue reconocida como joven escritora por la Presidencia de la República en Roma (2019). Fundadora de Kribí, transformando la investigación en herramientas digitales de aprendizaje.",
       long: `Cristina es Magíster en Educación con énfasis en Currículo y Evaluación (2022) y Contadora Pública (2018) de la Universidad del Norte. Su trayectoria docente incluye la educación superior en la Universidad del Norte, donde ha orientado las asignaturas de Competencias Comunicativas y apoyado procesos investigativos y comunitarios relacionados con las lenguas y comunidades afro y en la Corporación Universitaria Reformada, liderando procesos de enseñanza dentro de la Licenciatura en Bilingüismo. Asimismo, cuenta con trayectoria internacional como maestra de español en Bucknell University (Estados Unidos). Su línea de investigación se centra en el codiseño de rutas formativas vivas, currículos situados y la incorporación de artefactos tecnológicos como mediadores del aprendizaje de lenguas minorizadas.
@@ -74,4 +74,21 @@ Mi experiencia previa abarca la resolución de problemas complejos en la estruct
       linkedin: 'https://www.linkedin.com/in/p64b/'
     }
   },
+  {
+    name: 'Hernando Junior',
+    lastname: 'de la Hoz Márquez',
+    role: 'Presidente y Representante Legal de FUMCAT · Gestión y articulación institucional de Kribí',
+    description: {
+      short: 'Ingeniero Agroindustrial y profesional vinculado a procesos de educación, gestión, consultoría y desarrollo empresarial. Su experiencia en formación, planificación, gestión de proyectos y mejora de procesos se suma al compromiso de fortalecer iniciativas que aporten al desarrollo de las comunidades.',
+      long: `
+Como Presidente y Representante Legal de la Fundación María Catalina Luango – FUMCAT, acompaña y respalda institucionalmente el desarrollo de Kribí, contribuyendo a la gestión, articulación y sostenibilidad de este proyecto orientado a la preservación y promoción de la lengua, la memoria y el patrimonio cultural de San Basilio de Palenque.
+
+Su participación en Kribí representa la articulación entre gestión, educación, tecnología y cultura, fortaleciendo los procesos necesarios para que el conocimiento y la identidad palenquera puedan llegar a nuevas generaciones y a diferentes lugares del mundo.
+
+Esto además está respaldado por su perfil profesional: es Ingeniero Agroindustrial, tiene experiencia en formación empresarial, consultoría, gestión de proyectos y actualmente cuenta con formación de maestría en Sistemas Integrados.
+      `,
+    },
+    imageUrl: '/images/hernando-de-la-hoz.jpg',
+    profileUrl: '/suto/hernando-de-la-hoz'
+  }
 ];
