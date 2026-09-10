@@ -1,4 +1,8 @@
-const ABOUT_US: {[key: string]: {TITLE: string, DESCRIPTION: string}} = {
+const ABOUT_US: { [key: string]: { TITLE: string, DESCRIPTION: string } } = {
+  PROJECT_DESCRIPTION: {
+    TITLE: 'Kribí',
+    DESCRIPTION: 'Kribí es una iniciativa de la Fundación María Catalina Luango – FUMCAT, creada para fortalecer, preservar y divulgar la lengua, cultura, memoria e identidad de San Basilio de Palenque a través de herramientas digitales.\n\nEl proyecto es operado y desarrollado por FUMCAT, bajo la dirección de Cristina Isabel de la Hoz Márquez, representante del proyecto y responsable de su gestión y articulación institucional.\n\nKribí nace como una extensión del trabajo cultural y educativo de FUMCAT, poniendo la tecnología al servicio de la preservación de la lengua palenquera y de la memoria cultural de Palenque.'
+  },
   MISION: {
     TITLE: 'Misión',
     DESCRIPTION: 'Preservar y promover la herencia cultural y lingüística de San Basilio de Palenque. Facilitar a la comunidad académica y público en general el acceso al saber de la Lengua Palenquera y transmitirlo a generaciones actuales y futuras a través del reconocimiento de valores, prácticas, tradiciones y expresiones culturales alrededor de la lengua ancestral en aras de salvaguardar la filosofía e idiosincrasia del pueblo palenquero.'
