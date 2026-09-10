@@ -88,7 +88,7 @@ Su participación en Kribí representa la articulación entre gestión, educaci�
 Esto además está respaldado por su perfil profesional: es Ingeniero Agroindustrial, tiene experiencia en formación empresarial, consultoría, gestión de proyectos y actualmente cuenta con formación de maestría en Sistemas Integrados.
       `,
     },
-    imageUrl: '/images/hernando-de-la-hoz.jpg',
+    imageUrl: '/images/hernando-de-la-hoz.png',
     profileUrl: '/suto/hernando-de-la-hoz'
   }
 ];
